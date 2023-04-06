@@ -1,0 +1,14 @@
+.header {
+  margin-top: 20px;
+}
+.headerB {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerBookLink {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}

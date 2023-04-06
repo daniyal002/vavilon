@@ -1,0 +1,10 @@
+.adminMovieList {
+  margin-left: 200px;
+}
+
+.adminMoviePostItem {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
