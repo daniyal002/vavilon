@@ -1,9 +1,24 @@
-import React from "react";
-import Movie from "../Movie/Movie";
-import styles from "./MovieList.module.css";
-import Header from "../Header/Header";
+import React from 'react';
+import Movie from '../Movie/Movie';
+import styles from './MovieList.module.css';
+import Header from '../Header/Header';
 
-const MovieList = ({ movies, bookMovie }) => {
+const MovieList = () => {
+  const [movies, setMovies] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('http://localhost:5000/sessions');
+        const data = await response.json();
+        setMovies(data);
+      } catch (error) {
+        console.error('There was a problem fetching the data:', error);
+      }
+    }
+    fetchData();
+    console.log(movies);
+  }, []);
   return (
     <>
       <Header />
@@ -13,14 +28,9 @@ const MovieList = ({ movies, bookMovie }) => {
             {movies.map((movie) => (
               <Movie
                 key={movie.id}
-                movieId={movie.id}
-                title={movie.title}
-                poster={movie.poster}
-                description={movie.description}
+                movieId={movie.movieId}
                 price={movie.price}
                 time={movie.time}
-                rating={movie.rating}
-                ageRestriction={movie.ageRestriction}
               />
             ))}
           </div>
