@@ -1,5 +1,5 @@
-import React from "react";
-import style from "./PosterItemModal.module.css";
+import React from 'react';
+import style from './PosterItemModal.module.css';
 
 const PosterItemModal = ({
   setIsModalOpen,
@@ -10,9 +10,9 @@ const PosterItemModal = ({
   price,
 }) => {
   const [updateSessions, setUpdateSessions] = React.useState({
-    price: "",
-    time: "",
-    date: "",
+    price: '',
+    time: '',
+    date: '',
   });
 
   React.useEffect(() => {
@@ -36,9 +36,9 @@ const PosterItemModal = ({
       const response = await fetch(
         `http://localhost:5000/sessions/${posterId}`,
         {
-          method: "PUT",
+          method: 'PUT',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             time: updateSessions.time,
@@ -48,13 +48,13 @@ const PosterItemModal = ({
         }
       );
       if (response.ok) {
-        console.log("Сеанс успешно Изменен");
+        console.log('Сеанс успешно Изменен');
         setIsModalOpen(false);
       } else {
-        console.error("Ошибка при изменении сеанса:", response.statusText);
+        console.error('Ошибка при изменении сеанса:', response.statusText);
       }
     } catch (error) {
-      console.log("Ошибка при отправке запроса:", error);
+      console.log('Ошибка при отправке запроса:', error);
     }
     setIsModalOpen(false);
   };
@@ -65,6 +65,7 @@ const PosterItemModal = ({
         <h2>Изменить афишу: {title}</h2>
         <label htmlFor="price">Цена:</label>
         <input
+          className={style.modalContentInputText}
           type="text"
           id="price"
           value={updateSessions.price}
@@ -73,6 +74,7 @@ const PosterItemModal = ({
 
         <label htmlFor="time">Время:</label>
         <input
+          className={style.modalContentInputTime}
           type="time"
           id="time"
           value={updateSessions.time}
@@ -81,6 +83,7 @@ const PosterItemModal = ({
 
         <label htmlFor="date">Дата:</label>
         <input
+          className={style.modalContentInputDate}
           type="date"
           id="date"
           value={updateSessions.date}

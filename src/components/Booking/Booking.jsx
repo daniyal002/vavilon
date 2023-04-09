@@ -1,9 +1,14 @@
-import React, { useState } from "react";
-import style from "./Booking.module.css";
+import React, { useState } from 'react';
+import style from './Booking.module.css';
 
 const Booking = (props) => {
+  const [booking, setBooking] = React.useState({
+    name: '',
+    phone: '',
+  });
+
   const currentTime = new Date();
-  const [hours, minutes] = props.time.split(":");
+  const [hours, minutes] = props.time.split(':');
   const showTime = new Date(
     currentTime.getFullYear(),
     currentTime.getMonth(),
@@ -15,11 +20,38 @@ const Booking = (props) => {
   const [isBooked, setIsBooked] = useState(false);
   const [isBookingInProgress, setIsBookingInProgress] = useState(false);
 
-  const handleBookMovie = () => {
+  const handleInputChange = (event) => {
+    const { id, value } = event.target;
+    setBooking((booking) => ({
+      ...booking,
+      [id]: value,
+    }));
+  };
+
+  const handleBookMovie = async () => {
     setIsBookingInProgress(true);
 
     // Делаем запрос на сервер и бронируем фильм
 
+    try {
+      const response = await fetch(`http://localhost:5000/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          customer_name: booking.name,
+          customer_phone: booking.phone,
+        }),
+      });
+      if (response.ok) {
+        console.log('Бронироавние прошло успешно');
+      } else {
+        console.error('Ошибка при бронировании:', response.statusText);
+      }
+    } catch (error) {
+      console.log('Ошибка при отправке запроса:', error);
+    }
     setIsBooked(true);
     setIsBookingInProgress(false);
   };
@@ -37,6 +69,7 @@ const Booking = (props) => {
             placeholder="Имя"
             id="name"
             className={style.bookingName}
+            onChange={handleInputChange}
           />
           <input
             className={style.bookingPhone}
@@ -44,13 +77,14 @@ const Booking = (props) => {
             name="phone"
             id="phone"
             placeholder="+7(XXX)-XXX-XX-XX"
+            onChange={handleInputChange}
           />
           <button
             className={style.bookingBtn}
             disabled={isBookingInProgress}
             onClick={handleBookMovie}
           >
-            {isBookingInProgress ? "Бронирование..." : "Бронировать"}
+            {isBookingInProgress ? 'Бронирование...' : 'Бронировать'}
           </button>
         </div>
       ) : (
