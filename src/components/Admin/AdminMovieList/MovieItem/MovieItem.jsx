@@ -11,10 +11,12 @@ const MovieItem = ({
   age_restriction,
   trailer,
 }) => {
+  const URL = "http://192.168.24.148:5000/movies/";
+
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const deleteMovieFromDB = async (movieId) => {
     try {
-      const response = await fetch(`http://localhost:3000/movies/${movieId}`, {
+      const response = await fetch(URL + movieId, {
         method: "DELETE",
       });
       if (!response.ok) {

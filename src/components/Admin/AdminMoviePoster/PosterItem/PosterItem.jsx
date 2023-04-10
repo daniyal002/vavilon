@@ -10,12 +10,14 @@ const PosterItem = ({
   price,
   remaining_seats,
 }) => {
+  const URL = "http://192.168.24.148:5000/movies/";
+
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [movieList, setMovieList] = React.useState([]);
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://localhost:5000/movies/${movieId}`);
+        const response = await fetch(URL + movieId);
         const data = await response.json();
         setMovieList(data);
       } catch (error) {

@@ -1,5 +1,5 @@
-import React from 'react';
-import style from './PosterItemModal.module.css';
+import React from "react";
+import style from "./PosterItemModal.module.css";
 
 const PosterItemModal = ({
   setIsModalOpen,
@@ -9,10 +9,12 @@ const PosterItemModal = ({
   date,
   price,
 }) => {
+  const URL = "http://192.168.24.148:5000/sessions/";
+
   const [updateSessions, setUpdateSessions] = React.useState({
-    price: '',
-    time: '',
-    date: '',
+    price: "",
+    time: "",
+    date: "",
   });
 
   React.useEffect(() => {
@@ -33,28 +35,25 @@ const PosterItemModal = ({
   const handleSave = async () => {
     // сохранение данных в базу данных или отправка на сервер
     try {
-      const response = await fetch(
-        `http://localhost:5000/sessions/${posterId}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            time: updateSessions.time,
-            date: updateSessions.date,
-            price: updateSessions.price,
-          }),
-        }
-      );
+      const response = await fetch(URL + posterId, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          time: updateSessions.time,
+          date: updateSessions.date,
+          price: updateSessions.price,
+        }),
+      });
       if (response.ok) {
-        console.log('Сеанс успешно Изменен');
+        console.log("Сеанс успешно Изменен");
         setIsModalOpen(false);
       } else {
-        console.error('Ошибка при изменении сеанса:', response.statusText);
+        console.error("Ошибка при изменении сеанса:", response.statusText);
       }
     } catch (error) {
-      console.log('Ошибка при отправке запроса:', error);
+      console.log("Ошибка при отправке запроса:", error);
     }
     setIsModalOpen(false);
   };

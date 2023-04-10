@@ -1,11 +1,13 @@
-import React from 'react';
-import style from './MovieItemModal.module.css';
+import React from "react";
+import style from "./MovieItemModal.module.css";
 
 const MovieItemModal = ({ setIsModalOpen, title, movieId }) => {
+  const URL = "http://192.168.24.148:5000/sessions/";
+
   const [formData, setFormData] = React.useState({
-    price: '',
-    time: '',
-    date: '',
+    price: "",
+    time: "",
+    date: "",
   });
   const handleInputChange = (event) => {
     const { id, value } = event.target;
@@ -19,10 +21,10 @@ const MovieItemModal = ({ setIsModalOpen, title, movieId }) => {
 
     // сохранение данных в базу данных или отправка на сервер
     try {
-      const response = await fetch('http://localhost:5000/sessions', {
-        method: 'POST',
+      const response = await fetch(URL, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           movieId: movieId,
@@ -32,16 +34,16 @@ const MovieItemModal = ({ setIsModalOpen, title, movieId }) => {
         }),
       });
       if (response.ok) {
-        console.log('Новый сеанс успешно добавлен');
+        console.log("Новый сеанс успешно добавлен");
         setIsModalOpen(false);
       } else {
         console.error(
-          'Ошибка при добавлении нового сеанса:',
+          "Ошибка при добавлении нового сеанса:",
           response.statusText
         );
       }
     } catch (error) {
-      console.log('Ошибка при отправке запроса:', error);
+      console.log("Ошибка при отправке запроса:", error);
     }
     setIsModalOpen(false);
   };
