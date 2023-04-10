@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import style from "./Booking.module.css";
+import React, { useState } from 'react';
+import style from './Booking.module.css';
 
 const Booking = (props) => {
-  const URL = "http://192.168.24.148:5000/orders";
+  const URL = 'http://localhost:5000/orders';
 
   const [booking, setBooking] = React.useState({
-    name: "",
-    phone: "",
+    name: '',
+    phone: '',
   });
 
   const currentTime = new Date();
-  const [hours, minutes] = props.time.split(":");
+  const [hours, minutes] = props.time.split(':');
   const showTime = new Date(
     currentTime.getFullYear(),
     currentTime.getMonth(),
@@ -37,9 +37,9 @@ const Booking = (props) => {
 
     try {
       const response = await fetch(URL, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           sessionId: props.sessionId,
@@ -48,12 +48,12 @@ const Booking = (props) => {
         }),
       });
       if (response.ok) {
-        console.log("Бронироавние прошло успешно");
+        console.log('Бронироавние прошло успешно');
       } else {
-        console.error("Ошибка при бронировании:", response.statusText);
+        console.error('Ошибка при бронировании:', response.statusText);
       }
     } catch (error) {
-      console.log("Ошибка при отправке запроса:", error);
+      console.log('Ошибка при отправке запроса:', error);
     }
     setIsBooked(true);
     setIsBookingInProgress(false);
@@ -87,7 +87,7 @@ const Booking = (props) => {
             disabled={isBookingInProgress}
             onClick={handleBookMovie}
           >
-            {isBookingInProgress ? "Бронирование..." : "Бронировать"}
+            {isBookingInProgress ? 'Бронирование...' : 'Бронировать'}
           </button>
         </div>
       ) : (

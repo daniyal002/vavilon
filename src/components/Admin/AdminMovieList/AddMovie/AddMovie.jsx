@@ -1,36 +1,36 @@
-import React from "react";
-import style from "./AddMovie.module.css";
+import React from 'react';
+import style from './AddMovie.module.css';
 
 const AddMovie = () => {
-  const URL = "http://192.168.24.148:5000/movies/";
+  const URL = 'http://localhost:5000/movies/';
 
   const [addMovie, setAddMovie] = React.useState(false);
   const [formData, setFormData] = React.useState({
-    title: "",
-    poster_url: "",
-    description: "",
+    title: '',
+    poster_url: '',
+    description: '',
     rating: 0,
-    age_limit: "",
-    trailer_url: "",
+    age_limit: '',
+    trailer_url: '',
   });
 
   const addMovieToDB = async (movie) => {
     try {
       console.log(movie);
       const response = await fetch(URL, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(movie),
       });
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      console.log("Data was successfully added to the database:", data);
+      console.log('Data was successfully added to the database:', data);
     } catch (error) {
-      console.error("There was a problem adding data to the database:", error);
+      console.error('There was a problem adding data to the database:', error);
     }
   };
 
@@ -38,7 +38,7 @@ const AddMovie = () => {
     const { id, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [id]: id === "rating" ? parseInt(value) : value,
+      [id]: id === 'rating' ? parseInt(value) : value,
     }));
   };
 

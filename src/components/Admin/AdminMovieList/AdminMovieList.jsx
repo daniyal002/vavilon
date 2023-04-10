@@ -1,10 +1,10 @@
-import React from "react";
-import AddMovie from "./AddMovie/AddMovie";
-import style from "./AdminMovieList.module.css";
-import MovieItem from "./MovieItem/MovieItem";
+import React from 'react';
+import AddMovie from './AddMovie/AddMovie';
+import style from './AdminMovieList.module.css';
+import MovieItem from './MovieItem/MovieItem';
 
 const AdminMovieList = () => {
-  const URL = "http://192.168.24.148:5000/movies/";
+  const URL = 'http://localhost:5000/movies';
 
   const [movieList, setMovieList] = React.useState([]);
 
@@ -15,7 +15,7 @@ const AdminMovieList = () => {
         const data = await response.json();
         setMovieList(data);
       } catch (error) {
-        console.error("There was a problem fetching the data:", error);
+        console.error('There was a problem fetching the data:', error);
       }
     }
     fetchData();

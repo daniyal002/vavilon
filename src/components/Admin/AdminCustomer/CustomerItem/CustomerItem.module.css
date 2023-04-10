@@ -1,0 +1,47 @@
+.customerItem {
+  background-color: #2b0000;
+  color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.customerItemSessionTitle {
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+
+.customerItemSessionDateTime {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.customerItemSessionPrice {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.customerTable {
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  border-collapse: collapse;
+  overflow-x: scroll;
+}
+
+.customerTableHeader {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
+  padding: 5px;
+  border-bottom: 2px solid #fff;
+}
+
+.customerTableData {
+  font-size: 16px;
+  text-align: right;
+  padding: 5px;
+  border-bottom: 1px solid #fff;
+}

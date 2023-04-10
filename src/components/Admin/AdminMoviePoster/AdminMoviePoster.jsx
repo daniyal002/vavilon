@@ -1,9 +1,9 @@
-import React from "react";
-import style from "./AdminMoviePoster.module.css";
-import PosterItem from "./PosterItem/PosterItem";
+import React from 'react';
+import style from './AdminMoviePoster.module.css';
+import PosterItem from './PosterItem/PosterItem';
 
 const AdminMoviePoster = () => {
-  const URL = "http://192.168.24.148:5000/sessions/";
+  const URL = 'http://localhost:5000/sessions/';
 
   const [sessionList, setSessionList] = React.useState([]);
 
@@ -14,7 +14,7 @@ const AdminMoviePoster = () => {
         const data = await response.json();
         setSessionList(data);
       } catch (error) {
-        console.error("There was a problem fetching the data:", error);
+        console.error('There was a problem fetching the data:', error);
       }
     }
     fetchData();
