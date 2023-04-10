@@ -29,6 +29,7 @@ const MovieList = () => {
             {movies.map((movie) => (
               <Movie
                 key={movie.id}
+                sessionId={movie.id}
                 movieId={movie.movieId}
                 price={movie.price}
                 time={movie.time}

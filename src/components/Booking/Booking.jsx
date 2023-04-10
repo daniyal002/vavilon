@@ -42,6 +42,7 @@ const Booking = (props) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          sessionId: props.sessionId,
           customer_name: booking.name,
           customer_phone: booking.phone,
         }),
