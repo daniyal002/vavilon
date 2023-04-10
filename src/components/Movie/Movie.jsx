@@ -1,8 +1,8 @@
-import React from 'react';
-import style from './Movie.module.css';
-import Booking from '../Booking/Booking';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import style from "./Movie.module.css";
+import Booking from "../Booking/Booking";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Movie = ({ movieId, price, time }) => {
   const [movieList, setMovieList] = React.useState([]);
@@ -14,7 +14,7 @@ const Movie = ({ movieId, price, time }) => {
         const data = await response.json();
         setMovieList(data);
       } catch (error) {
-        console.error('There was a problem fetching the data:', error);
+        console.error("There was a problem fetching the data:", error);
       }
     }
 
