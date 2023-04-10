@@ -1,0 +1,28 @@
+CREATE TABLE movies (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  poster_url VARCHAR(255),
+  rating NUMERIC(2,1),
+  age_limit INTEGER,
+  trailer_url VARCHAR(255)
+);
+
+CREATE TABLE sessions (
+  id SERIAL PRIMARY KEY,
+  movie_id INTEGER REFERENCES movies(id),
+  time TIMESTAMP,
+  date DATE,
+  price NUMERIC(5,2),
+  remaining_seats INTEGER
+);
+
+CREATE TABLE orders (
+id SERIAL PRIMARY KEY,
+session_id INTEGER REFERENCES sessions(id),
+customer_name VARCHAR(255) NOT NULL,
+customer_phone VARCHAR(20) NOT NULL,
+seats INTEGER,
+total_price NUMERIC(5,2),
+created_at TIMESTAMP DEFAULT NOW()
+);

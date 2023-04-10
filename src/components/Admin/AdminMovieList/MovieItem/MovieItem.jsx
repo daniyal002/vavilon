@@ -1,6 +1,6 @@
-import React from "react";
-import style from "./MovieItem.module.css";
-import MovieItemModal from "./MovieItemModal/MovieItemModal";
+import React from 'react';
+import style from './MovieItem.module.css';
+import MovieItemModal from './MovieItemModal/MovieItemModal';
 
 const MovieItem = ({
   id,
@@ -11,22 +11,22 @@ const MovieItem = ({
   age_restriction,
   trailer,
 }) => {
-  const URL = "http://192.168.24.148:5000/movies/";
+  const URL = 'http://localhost:5000/movies/';
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const deleteMovieFromDB = async (movieId) => {
     try {
       const response = await fetch(URL + movieId, {
-        method: "DELETE",
+        method: 'DELETE',
       });
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      console.log("Data was successfully deleted from the database:", data);
+      console.log('Data was successfully deleted from the database:', data);
     } catch (error) {
       console.error(
-        "There was a problem deleting data from the database:",
+        'There was a problem deleting data from the database:',
         error
       );
     }
