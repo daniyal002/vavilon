@@ -4,12 +4,14 @@ import style from "./AdminMovieList.module.css";
 import MovieItem from "./MovieItem/MovieItem";
 
 const AdminMovieList = () => {
+  const URL = "http://192.168.24.148:5000/movies/";
+
   const [movieList, setMovieList] = React.useState([]);
 
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:5000/movies");
+        const response = await fetch(URL);
         const data = await response.json();
         setMovieList(data);
       } catch (error) {

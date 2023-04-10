@@ -5,12 +5,14 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Movie = ({ movieId, price, time }) => {
+  const URL = "http://192.168.24.148:5000/movies/";
+
   const [movieList, setMovieList] = React.useState([]);
 
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://localhost:5000/movies/${movieId}`);
+        const response = await fetch(URL + movieId);
         const data = await response.json();
         setMovieList(data);
       } catch (error) {

@@ -3,12 +3,14 @@ import style from "./AdminMoviePoster.module.css";
 import PosterItem from "./PosterItem/PosterItem";
 
 const AdminMoviePoster = () => {
+  const URL = "http://192.168.24.148:5000/sessions/";
+
   const [sessionList, setSessionList] = React.useState([]);
 
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:5000/sessions");
+        const response = await fetch(URL);
         const data = await response.json();
         setSessionList(data);
       } catch (error) {

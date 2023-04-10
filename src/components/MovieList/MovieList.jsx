@@ -4,12 +4,14 @@ import styles from "./MovieList.module.css";
 import Header from "../Header/Header";
 
 const MovieList = () => {
+  const URL = "http://192.168.24.148:5000/sessions";
+
   const [movies, setMovies] = React.useState([]);
 
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:5000/sessions");
+        const response = await fetch(URL);
         const data = await response.json();
         setMovies(data);
       } catch (error) {
