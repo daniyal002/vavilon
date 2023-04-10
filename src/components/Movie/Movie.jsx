@@ -4,7 +4,7 @@ import Booking from "../Booking/Booking";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Movie = ({ movieId, price, time }) => {
+const Movie = ({ movieId, price, time, sessionId }) => {
   const URL = "http://192.168.24.148:5000/movies/";
 
   const [movieList, setMovieList] = React.useState([]);
@@ -57,7 +57,7 @@ const Movie = ({ movieId, price, time }) => {
           </div>
         </div>
       </div>
-      <Booking movieId={movieId} time={time} />
+      <Booking sessionId={sessionId} time={time} />
     </div>
   );
 };
