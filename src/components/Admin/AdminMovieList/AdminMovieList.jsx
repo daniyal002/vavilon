@@ -1,5 +1,6 @@
 import React from 'react';
 import AddMovie from './AddMovie/AddMovie';
+import AdminSlidebar from '../AdminSlidebar/AdminSlidebar';
 import style from './AdminMovieList.module.css';
 import MovieItem from './MovieItem/MovieItem';
 
@@ -22,25 +23,28 @@ const AdminMovieList = () => {
   }, []);
 
   return (
-    <div className={style.adminMovieList}>
-      <AddMovie />
-      <div className={style.adminMovieListItem}>
-        {movieList.map((item) => {
-          return (
-            <MovieItem
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              poster={item.poster_url}
-              description={item.description}
-              rating={item.rating}
-              age_restriction={item.age_limit}
-              trailer={item.trailer_url}
-            />
-          );
-        })}
+    <>
+      <AdminSlidebar />
+      <div className={style.adminMovieList}>
+        <AddMovie />
+        <div className={style.adminMovieListItem}>
+          {movieList.map((item) => {
+            return (
+              <MovieItem
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                poster={item.poster_url}
+                description={item.description}
+                rating={item.rating}
+                age_restriction={item.age_limit}
+                trailer={item.trailer_url}
+              />
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

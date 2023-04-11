@@ -1,11 +1,12 @@
 .customerItem {
-  background-color: #2b0000;
-  color: #fff;
+  background-color: #3c3f4d;
+  color: #ffffff;
+  font-weight: bold;
   padding: 20px;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  border-bottom: 1px solid #fff;
 }
 
 .customerItemSessionTitle {
@@ -44,4 +45,22 @@
   text-align: right;
   padding: 5px;
   border-bottom: 1px solid #fff;
+}
+
+@media only screen and (max-width: 600px) {
+  .customerItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .customerTable {
+    margin: 10px 0;
+    max-width: none;
+    overflow-x: auto;
+  }
+
+  .customerTableHeader,
+  .customerTableData {
+    text-align: left;
+  }
 }

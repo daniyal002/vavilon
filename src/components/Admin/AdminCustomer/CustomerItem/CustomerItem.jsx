@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import style from './CustomerItem.module.css';
 
-const CustomerItem = ({ sessionId }) => {
+const CustomerItem = ({ sessionId, count }) => {
   const URLSessions = 'http://localhost:5000/sessions/';
   const URLMovies = 'http://localhost:5000/movies/';
 
@@ -35,7 +35,13 @@ const CustomerItem = ({ sessionId }) => {
 
   return (
     <div className={style.customerItem}>
-      <div>{movieData.title}</div>
+      <div className={style.customerItemTitle}>
+        Афиша по Фильму: {movieData.title}
+      </div>
+      <div className={style.customerItemTime}>Время: {sessionData.time}</div>
+      <div className={style.customerItemDate}>Дата: {sessionData.date}</div>
+      <div className={style.customerItemPrice}>Цена:{sessionData.price}</div>
+      <div className={style.customerItemSeats}>Занятые места: {count} </div>
     </div>
   );
 };
