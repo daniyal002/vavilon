@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './AdminMoviePoster.module.css';
+import AdminSlidebar from '../AdminSlidebar/AdminSlidebar';
 import PosterItem from './PosterItem/PosterItem';
 
 const AdminMoviePoster = () => {
@@ -21,22 +22,25 @@ const AdminMoviePoster = () => {
   }, []);
 
   return (
-    <div className={style.adminMovieList}>
-      <div className={style.adminMoviePostItem}>
-        {sessionList.map((el) => {
-          return (
-            <PosterItem
-              key={el.id}
-              posterId={el.id}
-              movieId={el.movieId}
-              time={el.time}
-              date={el.date}
-              price={el.price}
-            />
-          );
-        })}
+    <>
+      <AdminSlidebar />
+      <div className={style.adminMovieList}>
+        <div className={style.adminMoviePostItem}>
+          {sessionList.map((el) => {
+            return (
+              <PosterItem
+                key={el.id}
+                posterId={el.id}
+                movieId={el.movieId}
+                time={el.time}
+                date={el.date}
+                price={el.price}
+              />
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

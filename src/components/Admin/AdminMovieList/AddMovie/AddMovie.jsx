@@ -10,13 +10,12 @@ const AddMovie = () => {
     poster_url: '',
     description: '',
     rating: 0,
-    age_limit: '',
+    age_limit: 0,
     trailer_url: '',
   });
 
   const addMovieToDB = async (movie) => {
     try {
-      console.log(movie);
       const response = await fetch(URL, {
         method: 'POST',
         headers: {
@@ -39,6 +38,7 @@ const AddMovie = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [id]: id === 'rating' ? parseInt(value) : value,
+      [id]: id === 'age_restriction' ? parseInt(value) : value,
     }));
   };
 
@@ -60,11 +60,11 @@ const AddMovie = () => {
             onChange={handleInputChange}
           />
 
-          <label htmlFor="poster">Постер:</label>
+          <label htmlFor="poster_url">Постер:</label>
           <input
             className={style.addMovieInputPoster}
             type="text"
-            id="poster"
+            id="poster_url"
             value={formData.poster_url}
             onChange={handleInputChange}
           />
@@ -86,20 +86,20 @@ const AddMovie = () => {
             onChange={handleInputChange}
           />
 
-          <label htmlFor="age_restriction">Возрастное ограничение:</label>
+          <label htmlFor="age_limit">Возрастное ограничение:</label>
           <input
             className={style.addMovieInputAgeLimit}
-            type="text"
-            id="age_restriction"
-            value={formData.age_limit}
+            type="number"
+            id="age_limit"
+            value={parseInt(formData.age_limit)}
             onChange={handleInputChange}
           />
 
-          <label htmlFor="trailer">Трейлер:</label>
+          <label htmlFor="trailer_url">Трейлер:</label>
           <input
             className={style.addMovieInputTrailerUrl}
             type="text"
-            id="trailer"
+            id="trailer_url"
             value={formData.trailer_url}
             onChange={handleInputChange}
           />

@@ -4,12 +4,7 @@
 }
 
 body {
-  background: rgb(49, 16, 51);
-  background: linear-gradient(
-    180deg,
-    rgba(49, 16, 51, 1) 7%,
-    rgba(235, 101, 95, 1) 100%
-  );
+  background: rgb(152, 102, 155);
 }
 
 .container {
