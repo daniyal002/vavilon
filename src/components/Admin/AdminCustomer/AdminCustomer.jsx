@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import style from './AdminCustomer.module.css';
-import CustomerItem from './CustomerItem/CustomerItem';
-import AdminSlidebar from '../AdminSlidebar/AdminSlidebar';
+import React, { useState, useEffect } from "react";
+import style from "./AdminCustomer.module.css";
+import CustomerItem from "./CustomerItem/CustomerItem";
+import AdminSlidebar from "../AdminSlidebar/AdminSlidebar";
 
 function AdminCustomer() {
-  const URLOrders = 'http://localhost:5000/orders/';
+  const URLOrders = "http://90.156.210.4:5000/orders/";
 
   const [ordersData, setOrdersData] = useState({});
 
@@ -36,7 +36,7 @@ function AdminCustomer() {
   const deleteCustomer = async (ordersId) => {
     try {
       const response = await fetch(URLOrders + ordersId, {
-        method: 'DELETE',
+        method: "DELETE",
       });
       const data = response.json();
     } catch (error) {

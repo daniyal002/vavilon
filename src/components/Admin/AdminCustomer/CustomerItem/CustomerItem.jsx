@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import style from './CustomerItem.module.css';
+import React, { useEffect, useState } from "react";
+import style from "./CustomerItem.module.css";
 
 const CustomerItem = ({ sessionId, count }) => {
-  const URLSessions = 'http://localhost:5000/sessions/';
-  const URLMovies = 'http://localhost:5000/movies/';
+  const URLSessions = "http://90.156.210.4:5000/sessions/";
+  const URLMovies = "http://90.156.210.4:5000/movies/";
 
   const [sessionData, setSessionData] = useState([]);
   const [movieData, setMovieData] = useState([]);
@@ -15,7 +15,7 @@ const CustomerItem = ({ sessionId, count }) => {
       setSessionData(data);
       fetchMovieData(data.movieId);
     } catch (error) {
-      console.error('Failed to fetch session data', error);
+      console.error("Failed to fetch session data", error);
     }
   };
 
@@ -25,7 +25,7 @@ const CustomerItem = ({ sessionId, count }) => {
       const data = await response.json();
       setMovieData(data);
     } catch (error) {
-      console.error('Failed to fetch movie data', error);
+      console.error("Failed to fetch movie data", error);
     }
   };
 

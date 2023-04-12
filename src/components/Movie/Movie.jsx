@@ -1,11 +1,11 @@
-import React from 'react';
-import style from './Movie.module.css';
-import Booking from '../Booking/Booking';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import style from "./Movie.module.css";
+import Booking from "../Booking/Booking";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Movie = ({ movieId, price, time, sessionId }) => {
-  const URL = 'http://localhost:5000/movies/';
+  const URL = "http://90.156.210.4:5000/movies/";
 
   const [movieList, setMovieList] = React.useState([]);
 
@@ -16,7 +16,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
         const data = await response.json();
         setMovieList(data);
       } catch (error) {
-        console.error('There was a problem fetching the data:', error);
+        console.error("There was a problem fetching the data:", error);
       }
     }
 

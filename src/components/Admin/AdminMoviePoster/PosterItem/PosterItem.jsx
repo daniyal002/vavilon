@@ -1,6 +1,6 @@
-import React from 'react';
-import style from './PosterItem.module.css';
-import PosterItemModal from './PosterItemModal/PosterItemModal';
+import React from "react";
+import style from "./PosterItem.module.css";
+import PosterItemModal from "./PosterItemModal/PosterItemModal";
 
 const PosterItem = ({
   posterId,
@@ -10,7 +10,8 @@ const PosterItem = ({
   price,
   remaining_seats,
 }) => {
-  const URL = 'http://localhost:5000/movies/';
+  const URL = "http://90.156.210.4:5000/movies/";
+  const URLSession = "http://90.156.210.4:5000/sessions/";
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [movieList, setMovieList] = React.useState([]);
@@ -21,7 +22,7 @@ const PosterItem = ({
         const data = await response.json();
         setMovieList(data);
       } catch (error) {
-        console.error('There was a problem fetching the data:', error);
+        console.error("There was a problem fetching the data:", error);
       }
     }
     fetchData();
@@ -29,20 +30,17 @@ const PosterItem = ({
 
   const deleteMovieFromDB = async (posterId) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/sessions/${posterId}`,
-        {
-          method: 'DELETE',
-        }
-      );
+      const response = await fetch(URLSession + posterId, {
+        method: "DELETE",
+      });
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      console.log('Data was successfully deleted from the database:', data);
+      console.log("Data was successfully deleted from the database:", data);
     } catch (error) {
       console.error(
-        'There was a problem deleting data from the database:',
+        "There was a problem deleting data from the database:",
         error
       );
     }
