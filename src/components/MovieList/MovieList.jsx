@@ -1,10 +1,10 @@
-import React from 'react';
-import Movie from '../Movie/Movie';
-import styles from './MovieList.module.css';
-import Header from '../Header/Header';
+import React from "react";
+import Movie from "../Movie/Movie";
+import styles from "./MovieList.module.css";
+import Header from "../Header/Header";
 
 const MovieList = () => {
-  const URL = 'http://localhost:5000/sessions';
+  const URL = "http://90.156.210.4:5000/sessions";
 
   const [movies, setMovies] = React.useState([]);
 
@@ -15,7 +15,7 @@ const MovieList = () => {
         const data = await response.json();
         setMovies(data);
       } catch (error) {
-        console.error('There was a problem fetching the data:', error);
+        console.error("There was a problem fetching the data:", error);
       }
     }
     fetchData();
