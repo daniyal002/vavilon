@@ -8,12 +8,30 @@ const Header = () => {
       <div className="container">
         <div className={style.headerB}>
           <div className={style.headerLogo}>
-            <img src={logo} alt="Logo" />
+            <img src={logo} alt="Logo" className={style.headerLogoImg}/>
+            <h2 className={style.headerLogoHeader2}>Vavilon</h2>
+            <h1 className={style.headerLogoHeader1}>Кинотеатр на Крыше</h1>
           </div>
 
-          <a href="#" className={style.headerBookLink}>
+          <nav className={style.headerNav}>
+            <ul className={style.headerNavList}>
+              <li className={style.headerNavListItem}>
+              <a href="#" className={style.headerNavListItemLink}>
             Забронированные сеансы
           </a>
+              </li>
+              <li className={style.headerNavListItem}>
+              <a href="#" className={style.headerNavListItemLink}>
+            Контакты
+          </a>
+              </li>
+              
+               
+            </ul> 
+          </nav>
+          
+          
+          
         </div>
       </div>
     </div>

@@ -1,8 +1,6 @@
 import React from "react";
 import style from "./Movie.module.css";
 import Booking from "../Booking/Booking";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Movie = ({ movieId, price, time, sessionId }) => {
   const URL = "http://90.156.210.4:5000/movies/";
@@ -23,17 +21,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
     fetchData();
   }, []);
 
-  const ratingStars = [];
-  for (let i = 0; i < 5; i++) {
-    ratingStars.push(
-      <FontAwesomeIcon
-        key={i}
-        icon={faStar}
-        className={i < movieList.rating ? style.starFilled : style.starEmpty}
-      />
-    );
-  }
-
+ 
   return (
     <div className={style.movie}>
       <div className={style.movieG}>
@@ -43,16 +31,22 @@ const Movie = ({ movieId, price, time, sessionId }) => {
           className={style.moviePoster}
         />
         <div className={style.movieInfo}>
+          
+
+          <h2 className={style.movieTitle}>{movieList.title}</h2>
           <div className={style.moviePT}>
             <p className={style.moviePrice}>Цена: {price}₽</p>
             <p className={style.movieTime}>Время: {time}</p>
           </div>
-
-          <h2 className={style.movieTitle}>{movieList.title}</h2>
-          <p className={style.movieDescription}>{movieList.description}</p>
+          <p className={style.movieDescription}>
+  <span className={style.movieDescriptionTitle}>Описание: </span><br/>
+  {movieList.description.substring(0, 200)}
+  {/* Добавляем многоточие в конце, если описание укорочено */}
+  {movieList.description.length > 200 && '...'}
+</p>
 
           <div className={style.movieRaR}>
-            <p className={style.rating}>{ratingStars}</p>
+            <p className={style.movieRating}>Рейтинг: {movieList.rating}</p>
             <p className={style.ageRestriction}>{movieList.age_limit}+</p>
           </div>
         </div>
