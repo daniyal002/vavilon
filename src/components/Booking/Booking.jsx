@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import style from "./Booking.module.css";
+import check from "../../assets/icons/check.svg";
 
 const Booking = (props) => {
   const URL = "http://90.156.210.4:5000/orders";
@@ -87,14 +88,14 @@ const Booking = (props) => {
             disabled={isBookingInProgress}
             onClick={handleBookMovie}
           >
-            {isBookingInProgress ? "Бронирование..." : "Бронировать"}
+            {isBookingInProgress ? "Бронирование..." : "Забронировать"}
           </button>
         </div>
       ) : (
         <div className={style.bookingOk}>
-          <h2 className={style.bookingOkHeader}>Фильм забронирован!</h2>
+          <h2 className={style.bookingOkHeader}>Бронь принята <img className={style.bookingOkHeaderCheck} src={check} alt="Галочка" width='20'/></h2>
           <p className={style.bookingOkText}>
-            Оплатите билет назвав свое имя или номер, когда придете в кинотеатр
+            Оплата производится на месте. <br/>На кассе назовите ваше имя или номер телефона
           </p>
         </div>
       )}

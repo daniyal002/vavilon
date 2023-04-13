@@ -6,7 +6,6 @@
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
-  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -18,7 +17,6 @@
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
-  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -31,46 +29,48 @@
 .bookingName,
 .bookingPhone {
   margin-top: 10px;
-  background-color: #202020;
-  color: #ff0000;
+  background-color: #f1f1f1;
+  color: #642d6b;
   border: none;
-  border-bottom: 2px solid #ef5e5f;
+  border-radius: 5px;
+  border-bottom: 2px solid #642d6b;
   padding: 10px;
 }
 
 .bookingBtn {
   margin-top: 10px;
-  background-color: #ef5e5f;
+  background-color: #642d6b;
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
-  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .bookingName::placeholder,
 .bookingPhone::placeholder {
-  color: #ef5e5f;
+  color: #642d6b;
 }
 
 .bookingOkHeader {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  justify-content: center;
   color: #fff;
   margin-top: 10px;
-  background-color: #ef5e5f;
+  background-color: #1f9c49;
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 18px;
-  font-weight: bold;
 }
 
 .bookingOkText {
   margin-top: 10px;
   font-size: 16px;
   text-align: center;
-  color: #fff;
+  color: #642d6b;
   max-width: 410px;
 }

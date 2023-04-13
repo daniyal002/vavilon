@@ -3,12 +3,53 @@
 }
 .headerB {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
 .headerBookLink {
-  color: white;
+  color: rgb(107, 47, 47);
   text-decoration: none;
   font-size: 18px;
+}
+
+.headerLogo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headerLogoImg{
+  width: 90px;
+  margin-bottom: 10px;
+}
+.headerLogoHeader2{
+  font-size: 34px;
+  text-transform: uppercase;
+  width:200px;
+  color: #642d6b;
+  text-align: center;
+  
+}
+.headerLogoHeader1{
+  font-size: 16px;
+  width:200px;
+  color:#642d6b ;
+  text-align: center;
+}
+
+
+.headerNavList{
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
+.headerNavListItem{
+  list-style: none;
+}
+.headerNavListItemLink{
+  text-decoration: none;
+  color: #642d6b;
 }
