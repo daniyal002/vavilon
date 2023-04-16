@@ -2,6 +2,10 @@
   margin-left: 20px;
 }
 
+.addMovieButton{
+  color: #642d6b;
+}
+
 form {
   display: flex;
   flex-direction: column;

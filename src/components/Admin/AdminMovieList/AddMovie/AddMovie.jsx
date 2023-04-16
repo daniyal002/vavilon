@@ -48,7 +48,7 @@ const AddMovie = () => {
   };
   return (
     <div className={style.addMovie}>
-      <button onClick={() => setAddMovie(true)}>Добавить фильм</button>
+      <button onClick={() => setAddMovie(true)} className={style.addMovieButton}>Добавить фильм</button>
       {addMovie && (
         <form onSubmit={handleSubmit}>
           <label htmlFor="title">Название фильма:</label>
