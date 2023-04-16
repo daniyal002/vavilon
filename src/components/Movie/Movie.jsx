@@ -4,6 +4,7 @@ import Booking from "../Booking/Booking";
 
 const Movie = ({ movieId, price, time, sessionId }) => {
   const URL = "http://90.156.210.4:5000/movies/";
+  const maxLength = 100;
 
   const [movieList, setMovieList] = React.useState([]);
 
@@ -40,9 +41,10 @@ const Movie = ({ movieId, price, time, sessionId }) => {
           </div>
           <p className={style.movieDescription}>
   <span className={style.movieDescriptionTitle}>Описание: </span><br/>
-  {movieList.description.substring(0, 200)}
-  {/* Добавляем многоточие в конце, если описание укорочено */}
-  {movieList.description.length > 200 && '...'}
+  {movieList.description && movieList.description.length > maxLength
+    ? `${movieList.description.substring(0, maxLength)}...`
+    : movieList.description
+  }
 </p>
 
           <div className={style.movieRaR}>
