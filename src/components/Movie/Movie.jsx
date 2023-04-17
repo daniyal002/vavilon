@@ -1,9 +1,9 @@
 import React from "react";
 import style from "./Movie.module.css";
 import Booking from "../Booking/Booking";
+import { UrlMovie } from "../../urls";
 
 const Movie = ({ movieId, price, time, sessionId }) => {
-  const URL = "http://90.156.210.4:5000/movies/";
   const maxLength = 100;
 
   const [movieList, setMovieList] = React.useState([]);
@@ -11,7 +11,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(URL + movieId);
+        const response = await fetch(UrlMovie + "/" + movieId);
         const data = await response.json();
         setMovieList(data);
       } catch (error) {
@@ -22,7 +22,6 @@ const Movie = ({ movieId, price, time, sessionId }) => {
     fetchData();
   }, []);
 
- 
   return (
     <div className={style.movie}>
       <div className={style.movieG}>
@@ -32,20 +31,18 @@ const Movie = ({ movieId, price, time, sessionId }) => {
           className={style.moviePoster}
         />
         <div className={style.movieInfo}>
-          
-
           <h2 className={style.movieTitle}>{movieList.title}</h2>
           <div className={style.moviePT}>
             <p className={style.moviePrice}>Цена: {price}₽</p>
             <p className={style.movieTime}>Время: {time}</p>
           </div>
           <p className={style.movieDescription}>
-  <span className={style.movieDescriptionTitle}>Описание: </span><br/>
-  {movieList.description && movieList.description.length > maxLength
-    ? `${movieList.description.substring(0, maxLength)}...`
-    : movieList.description
-  }
-</p>
+            <span className={style.movieDescriptionTitle}>Описание: </span>
+            <br />
+            {movieList.description && movieList.description.length > maxLength
+              ? `${movieList.description.substring(0, maxLength)}...`
+              : movieList.description}
+          </p>
 
           <div className={style.movieRaR}>
             <p className={style.movieRating}>Рейтинг: {movieList.rating}</p>
@@ -53,7 +50,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
           </div>
         </div>
       </div>
-      <Booking sessionId={sessionId} time={time} movieId={movieId}/>
+      <Booking sessionId={sessionId} time={time} movieId={movieId} />
     </div>
   );
 };

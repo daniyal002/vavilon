@@ -7,6 +7,19 @@
   margin-top: 40px;
 }
 
-.movieListDate{
-  color: #646464;
+.movieListDate {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.movieListDateButton {
+  background-color: #642d6b;
+  border: 2px solid #642d6b;
+}
+
+.movieListDateButton:hover {
+  background-color: #fff;
+  border: 2px solid #642d6b;
+  color: #642d6b;
 }

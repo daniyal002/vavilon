@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import style from "./CustomerItem.module.css";
+import { UrlSession, UrlMovie } from "../../../../urls";
 
 const CustomerItem = ({ sessionId, count }) => {
-  const URLSessions = "http://90.156.210.4:5000/sessions/";
-  const URLMovies = "http://90.156.210.4:5000/movies/";
-
   const [sessionData, setSessionData] = useState([]);
   const [movieData, setMovieData] = useState([]);
 
   const fetchSessionData = async () => {
     try {
-      const response = await fetch(URLSessions + sessionId);
+      const response = await fetch(UrlSession + "/" + sessionId);
       const data = await response.json();
       setSessionData(data);
       fetchMovieData(data.movieId);
@@ -21,7 +19,7 @@ const CustomerItem = ({ sessionId, count }) => {
 
   const fetchMovieData = async (movieId) => {
     try {
-      const response = await fetch(URLMovies + movieId);
+      const response = await fetch(UrlMovie + movieId);
       const data = await response.json();
       setMovieData(data);
     } catch (error) {

@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./PosterItem.module.css";
 import PosterItemModal from "./PosterItemModal/PosterItemModal";
+import { UrlSession, UrlMovie } from "../../../../urls";
 
 const PosterItem = ({
   posterId,
@@ -10,15 +11,12 @@ const PosterItem = ({
   price,
   remaining_seats,
 }) => {
-  const URL = "http://90.156.210.4:5000/movies/";
-  const URLSession = "http://90.156.210.4:5000/sessions/";
-
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [movieList, setMovieList] = React.useState([]);
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(URL + movieId);
+        const response = await fetch(UrlMovie + "/" + movieId);
         const data = await response.json();
         setMovieList(data);
       } catch (error) {
@@ -30,7 +28,7 @@ const PosterItem = ({
 
   const deleteMovieFromDB = async (posterId) => {
     try {
-      const response = await fetch(URLSession + posterId, {
+      const response = await fetch(UrlSession + "/" + posterId, {
         method: "DELETE",
       });
       if (!response.ok) {
