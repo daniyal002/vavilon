@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Movie from "../Movie/Movie";
 import styles from "./MovieList.module.css";
 import Header from "../Header/Header";
+import { fromNumbersInMonth } from "./MovieData";
 import { UrlSession } from "../../urls";
 
 const MovieList = () => {
@@ -44,8 +45,9 @@ const MovieList = () => {
                   key={date}
                   onClick={() => setSelectedDate(date)}
                 >
-                  {date}
+                    { date.split('-').slice(2).join('-') + " " + fromNumbersInMonth(parseInt(date.split('-')[1]))  }
                 </button>
+
               ))}
             </div>
           </div>
