@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./MovieItem.module.css";
 import MovieItemModal from "./MovieItemModal/MovieItemModal";
+import { UrlMovie } from "../../../../urls";
 
 const MovieItem = ({
   id,
@@ -11,12 +12,10 @@ const MovieItem = ({
   age_restriction,
   trailer,
 }) => {
-  const URL = "http://90.156.210.4:5000/movies/";
-
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const deleteMovieFromDB = async (movieId) => {
     try {
-      const response = await fetch(URL + movieId, {
+      const response = await fetch(UrlMovie + "/" + movieId, {
         method: "DELETE",
       });
 

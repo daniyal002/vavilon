@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./PosterItemModal.module.css";
+import { UrlSession } from "../../../../../urls";
 
 const PosterItemModal = ({
   setIsModalOpen,
@@ -35,7 +36,7 @@ const PosterItemModal = ({
   const handleSave = async () => {
     // сохранение данных в базу данных или отправка на сервер
     try {
-      const response = await fetch(URL + posterId, {
+      const response = await fetch(UrlSession + "/" + posterId, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

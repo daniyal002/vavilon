@@ -1,38 +1,63 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Movie from "../Movie/Movie";
 import styles from "./MovieList.module.css";
 import Header from "../Header/Header";
+import { UrlSession } from "../../urls";
 
 const MovieList = () => {
-  const URL = "http://90.156.210.4:5000/sessions";
+  const [selectedDate, setSelectedDate] = useState("");
+  const [dates, setDates] = React.useState([]);
 
-  const [movies, setMovies] = React.useState([]);
+  const [sessions, setSessions] = useState([]);
 
-  React.useEffect(() => {
+  const filterSessionsByDate = () => {
+    return sessions.filter((session) => session.date === selectedDate);
+  };
+
+  useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(URL);
+        const response = await fetch(UrlSession);
         const data = await response.json();
-        setMovies(data);
+        setSessions(data);
+        const uniqueDates = Array.from(
+          new Set(data.map((session) => session.date))
+        );
+        setDates(uniqueDates);
       } catch (error) {
         console.error("There was a problem fetching the data:", error);
       }
     }
     fetchData();
   }, []);
+
   return (
     <>
       <Header />
       <div className={styles.movieList}>
         <div className="container">
+          <div className={styles.filters}>
+            <div className={styles.movieListDate}>
+              {dates.map((date) => (
+                <button
+                  className={styles.movieListDateButton}
+                  key={date}
+                  onClick={() => setSelectedDate(date)}
+                >
+                  {date}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className={styles.movieListB}>
-            {movies.map((movie) => (
+            {filterSessionsByDate().map((session) => (
               <Movie
-                key={movie.id}
-                sessionId={movie.id}
-                movieId={movie.movieId}
-                price={movie.price}
-                time={movie.time}
+                key={session.id}
+                sessionId={session.id}
+                movieId={session.movieId}
+                price={session.price}
+                time={session.time}
+                remainingSeats={session.remaining_seats}
               />
             ))}
           </div>

@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import style from "./AdminCustomer.module.css";
 import CustomerItem from "./CustomerItem/CustomerItem";
 import AdminSlidebar from "../AdminSlidebar/AdminSlidebar";
+import { UrlOrder } from "../../../urls";
 
 function AdminCustomer() {
-  const URLOrders = "http://90.156.210.4:5000/orders/";
-
   const [ordersData, setOrdersData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(URLOrders);
+        const response = await fetch(UrlOrder);
         const data = await response.json();
 
         // Создание объекта с массивами заказов по sessionId
@@ -35,7 +34,7 @@ function AdminCustomer() {
 
   const deleteCustomer = async (ordersId) => {
     try {
-      const response = await fetch(URLOrders + ordersId, {
+      const response = await fetch(UrlOrder + "/" + ordersId, {
         method: "DELETE",
       });
       const data = response.json();

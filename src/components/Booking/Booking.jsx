@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import style from "./Booking.module.css";
 import check from "../../assets/icons/check.svg";
+import { UrlOrder } from "../../urls";
 
 const Booking = (props) => {
-  const URL = "http://90.156.210.4:5000/orders";
-
   const [booking, setBooking] = React.useState({
     name: "",
     phone: "",
@@ -37,17 +36,17 @@ const Booking = (props) => {
       ...storedBookings,
       [booking.id]: {
         ...booking,
-        id: sessionId // Set the id of the booking to the sessionId
+        id: sessionId, // Set the id of the booking to the sessionId
       },
     };
     localStorage.setItem(sessionId, JSON.stringify(updatedBookings));
   };
-  
+
   const handleBookMovie = async () => {
     setIsBookingInProgress(true);
 
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(UrlOrder, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,11 +71,12 @@ const Booking = (props) => {
   };
 
   React.useEffect(() => {
-    const storedBooking = JSON.parse(localStorage.getItem(props.sessionId)) || {};
+    const storedBooking =
+      JSON.parse(localStorage.getItem(props.sessionId)) || {};
     if (storedBooking[booking.id]) {
       setIsBooked(true);
     }
-  }, [booking.id, props.sessionId])
+  }, [booking.id, props.sessionId]);
 
   return (
     <>
@@ -111,9 +111,18 @@ const Booking = (props) => {
         </div>
       ) : (
         <div className={style.bookingOk}>
-          <h2 className={style.bookingOkHeader}>Бронь принята <img className={style.bookingOkHeaderCheck} src={check} alt="Галочка" width='20'/></h2>
+          <h2 className={style.bookingOkHeader}>
+            Бронь принята{" "}
+            <img
+              className={style.bookingOkHeaderCheck}
+              src={check}
+              alt="Галочка"
+              width="20"
+            />
+          </h2>
           <p className={style.bookingOkText}>
-            Оплата производится на месте. <br/>На кассе назовите ваше имя или номер телефона
+            Оплата производится на месте. <br />
+            На кассе назовите ваше имя или номер телефона
           </p>
         </div>
       )}

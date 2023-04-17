@@ -1,9 +1,8 @@
 import React from "react";
 import style from "./AddMovie.module.css";
+import { UrlMovie } from "../../../../urls";
 
 const AddMovie = () => {
-  const URL = "http://90.156.210.4:5000/movies/";
-
   const [addMovie, setAddMovie] = React.useState(false);
   const [formData, setFormData] = React.useState({
     title: "",
@@ -16,7 +15,7 @@ const AddMovie = () => {
 
   const addMovieToDB = async (movie) => {
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(UrlMovie, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +47,12 @@ const AddMovie = () => {
   };
   return (
     <div className={style.addMovie}>
-      <button onClick={() => setAddMovie(true)} className={style.addMovieButton}>Добавить фильм</button>
+      <button
+        onClick={() => setAddMovie(true)}
+        className={style.addMovieButton}
+      >
+        Добавить фильм
+      </button>
       {addMovie && (
         <form onSubmit={handleSubmit}>
           <label htmlFor="title">Название фильма:</label>

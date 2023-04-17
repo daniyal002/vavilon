@@ -1,9 +1,8 @@
 import React from "react";
 import style from "./MovieItemModal.module.css";
+import { UrlSession } from "../../../../../urls";
 
 const MovieItemModal = ({ setIsModalOpen, title, movieId }) => {
-  const URL = "http://90.156.210.4:5000/sessions/";
-
   const [formData, setFormData] = React.useState({
     price: "",
     time: "",
@@ -21,7 +20,7 @@ const MovieItemModal = ({ setIsModalOpen, title, movieId }) => {
 
     // сохранение данных в базу данных или отправка на сервер
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(UrlSession, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -3,16 +3,15 @@ import AddMovie from "./AddMovie/AddMovie";
 import AdminSlidebar from "../AdminSlidebar/AdminSlidebar";
 import style from "./AdminMovieList.module.css";
 import MovieItem from "./MovieItem/MovieItem";
+import { UrlMovie } from "../../../urls";
 
 const AdminMovieList = () => {
-  const URL = "http://90.156.210.4:5000/movies";
-
   const [movieList, setMovieList] = React.useState([]);
 
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(URL);
+        const response = await fetch(UrlMovie);
         const data = await response.json();
         setMovieList(data);
       } catch (error) {

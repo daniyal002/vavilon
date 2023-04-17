@@ -2,16 +2,15 @@ import React from "react";
 import style from "./AdminMoviePoster.module.css";
 import AdminSlidebar from "../AdminSlidebar/AdminSlidebar";
 import PosterItem from "./PosterItem/PosterItem";
+import { UrlSession } from "../../../urls";
 
 const AdminMoviePoster = () => {
-  const URL = "http://90.156.210.4:5000/sessions/";
-
   const [sessionList, setSessionList] = React.useState([]);
 
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(URL);
+        const response = await fetch(UrlSession);
         const data = await response.json();
         setSessionList(data);
       } catch (error) {
