@@ -11,7 +11,7 @@ const Booking = (props) => {
   });
 
   const currentTime = new Date();
-  const [hours, minutes] = props.time.split(":");
+  const [hours, minutes] = props.time ? props.time.split(":") : [0, 0];
   const showTime = new Date(
     currentTime.getFullYear(),
     currentTime.getMonth(),
@@ -31,10 +31,20 @@ const Booking = (props) => {
     }));
   };
 
+  const bookMovie = (sessionId, booking) => {
+    const storedBookings = JSON.parse(localStorage.getItem(sessionId)) || {};
+    const updatedBookings = {
+      ...storedBookings,
+      [booking.id]: {
+        ...booking,
+        id: sessionId // Set the id of the booking to the sessionId
+      },
+    };
+    localStorage.setItem(sessionId, JSON.stringify(updatedBookings));
+  };
+  
   const handleBookMovie = async () => {
     setIsBookingInProgress(true);
-
-    // Делаем запрос на сервер и бронируем фильм
 
     try {
       const response = await fetch(URL, {
@@ -49,16 +59,24 @@ const Booking = (props) => {
         }),
       });
       if (response.ok) {
-        console.log("Бронироавние прошло успешно");
+        bookMovie(props.sessionId, booking);
+        setIsBooked(true);
+        console.log("Бронирование прошло успешно");
       } else {
         console.error("Ошибка при бронировании:", response.statusText);
       }
     } catch (error) {
       console.log("Ошибка при отправке запроса:", error);
     }
-    setIsBooked(true);
     setIsBookingInProgress(false);
   };
+
+  React.useEffect(() => {
+    const storedBooking = JSON.parse(localStorage.getItem(props.sessionId)) || {};
+    if (storedBooking[booking.id]) {
+      setIsBooked(true);
+    }
+  }, [booking.id, props.sessionId])
 
   return (
     <>

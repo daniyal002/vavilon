@@ -53,7 +53,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
           </div>
         </div>
       </div>
-      <Booking sessionId={sessionId} time={time} />
+      <Booking sessionId={sessionId} time={time} movieId={movieId}/>
     </div>
   );
 };
