@@ -1,34 +1,34 @@
-import React from "react";
-import style from "./AddMovie.module.css";
-import { UrlMovie } from "../../../../urls";
+import React from 'react';
+import style from './AddMovie.module.css';
+import { UrlMovie } from '../../../../urls';
 
 const AddMovie = () => {
   const [addMovie, setAddMovie] = React.useState(false);
   const [formData, setFormData] = React.useState({
-    title: "",
-    poster_url: "",
-    description: "",
+    title: '',
+    poster_url: '',
+    description: '',
     rating: 0,
     age_limit: 0,
-    trailer_url: "",
+    trailer_url: '',
   });
 
   const addMovieToDB = async (movie) => {
     try {
       const response = await fetch(UrlMovie, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(movie),
       });
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      console.log("Data was successfully added to the database:", data);
+      console.log('Data was successfully added to the database:', data);
     } catch (error) {
-      console.error("There was a problem adding data to the database:", error);
+      console.error('There was a problem adding data to the database:', error);
     }
   };
 
@@ -36,8 +36,8 @@ const AddMovie = () => {
     const { id, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [id]: id === "rating" ? parseInt(value) : value,
-      [id]: id === "age_restriction" ? parseInt(value) : value,
+      [id]: id === 'rating' ? parseInt(value) : value,
+      [id]: id === 'age_restriction' ? parseInt(value) : value,
     }));
   };
 
@@ -108,8 +108,16 @@ const AddMovie = () => {
             onChange={handleInputChange}
           />
 
-          <button type="submit">Добавить</button>
-          <button onClick={() => setAddMovie(false)}> Закрыть форму</button>
+          <button className={style.addMovieButtonBD} type="submit">
+            Добавить
+          </button>
+          <button
+            onClick={() => setAddMovie(false)}
+            className={style.addMovieClose}
+          >
+            {' '}
+            Закрыть форму
+          </button>
         </form>
       )}
     </div>

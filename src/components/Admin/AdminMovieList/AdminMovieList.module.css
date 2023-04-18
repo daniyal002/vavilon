@@ -8,3 +8,29 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.adminMovieListSearchBar {
+  display: flex;
+  justify-content: center;
+}
+.adminMovieListSearch {
+  width: 80vw;
+  padding: 10px;
+  margin: 10px 20px;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 425px) {
+  .adminMovieList {
+    margin-left: 150px;
+  }
+
+  .adminMovieListSearchBar {
+    justify-content: flex-start;
+  }
+
+  .adminMovieListSearch {
+    width: 60vw;
+    margin: 10px 30px;
+  }
+}

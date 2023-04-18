@@ -1,9 +1,13 @@
 .addMovie {
   margin-left: 20px;
+  display: inline;
 }
 
-.addMovieButton{
+.addMovieButton {
   color: #642d6b;
+  margin-left: 15px;
+  margin-right: 0;
+  border: 1px solid #642d6b;
 }
 
 form {
@@ -46,18 +50,51 @@ label {
   height: 100px;
 }
 
-button[type='submit'] {
+.addMovieButtonBD {
   padding: 10px 15px;
   background-color: #09a657;
   color: #fff;
   border: none;
   border-radius: 5px;
-  font-size: 1.2rem;
+  font-size: 20px;
   cursor: pointer;
   margin-bottom: 10px;
 }
 
-button[type='submit']:hover {
+.addMovieButtonBD:hover {
   background-color: #fdfdfd;
   color: #ee4949;
+}
+
+@media screen and (max-width: 375px) {
+  .addMovieInputText,
+  .addMovieInputPoster,
+  .addMovieInputRating,
+  .addMovieInputAgeLimit,
+  .addMovieInputTrailerUrl {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .addMovieInputTextArea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  .addMovieButtonBD {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 10px 5px;
+  }
+
+  .addMovieClose {
+    font-size: 12px;
+    padding: 10px 5px;
+  }
 }

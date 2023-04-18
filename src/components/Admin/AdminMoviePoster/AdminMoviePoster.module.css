@@ -8,3 +8,29 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.movieListDate {
+  overflow-x: scroll;
+  padding: 0 10px;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.movieListDateButton {
+  background-color: #642d6b;
+  border: 2px solid #642d6b;
+}
+
+.movieListDateButton:hover {
+  background-color: #fff;
+  border: 2px solid #642d6b;
+  color: #642d6b;
+}
+
+@media screen and (max-width: 600px) {
+  .movieListDateButton {
+    font-size: 12px;
+    padding: 5px;
+  }
+}
