@@ -16,7 +16,7 @@ const MovieList = () => {
   };
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       try {
         const response = await fetch(UrlSession);
         const data = await response.json();
@@ -28,7 +28,7 @@ const MovieList = () => {
       } catch (error) {
         console.error("There was a problem fetching the data:", error);
       }
-    }
+    };
     fetchData();
   }, []);
 
@@ -45,9 +45,10 @@ const MovieList = () => {
                   key={date}
                   onClick={() => setSelectedDate(date)}
                 >
-                    { date.split('-').slice(2).join('-') + " " + fromNumbersInMonth(parseInt(date.split('-')[1]))  }
+                  {date.split("-").slice(2).join("-") +
+                    " " +
+                    fromNumbersInMonth(parseInt(date.split("-")[1]))}
                 </button>
-
               ))}
             </div>
           </div>
