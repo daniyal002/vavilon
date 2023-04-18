@@ -1,6 +1,6 @@
-import React from "react";
-import style from "./Header.module.css";
-import logo from "../../assets/logo.png";
+import React from 'react';
+import style from './Header.module.css';
+import logo from '../../assets/logo.png';
 
 const Header = () => {
   return (
@@ -8,7 +8,7 @@ const Header = () => {
       <div className="container">
         <div className={style.headerB}>
           <div className={style.headerLogo}>
-            <img src={logo} alt="Logo" className={style.headerLogoImg}/>
+            <img src={logo} alt="Logo" className={style.headerLogoImg} />
             <h2 className={style.headerLogoHeader2}>Vavilon</h2>
             <h1 className={style.headerLogoHeader1}>Кинотеатр на Крыше</h1>
           </div>
@@ -16,22 +16,17 @@ const Header = () => {
           <nav className={style.headerNav}>
             <ul className={style.headerNavList}>
               <li className={style.headerNavListItem}>
-              <a href="#" className={style.headerNavListItemLink}>
-            Забронированные сеансы
-          </a>
+                <a href="#" className={style.headerNavListItemLink}>
+                  Забронированные сеансы
+                </a>
               </li>
               <li className={style.headerNavListItem}>
-              <a href="#" className={style.headerNavListItemLink}>
-            Контакты
-          </a>
+                <a href="#" className={style.headerNavListItemLink}>
+                  Контакты
+                </a>
               </li>
-              
-               
-            </ul> 
+            </ul>
           </nav>
-          
-          
-          
         </div>
       </div>
     </div>

@@ -14,42 +14,40 @@
   font-size: 18px;
 }
 
-.headerLogo{
+.headerLogo {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.headerLogoImg{
+.headerLogoImg {
   width: 90px;
   margin-bottom: 10px;
 }
-.headerLogoHeader2{
+.headerLogoHeader2 {
   font-size: 34px;
   text-transform: uppercase;
-  width:200px;
+  width: 200px;
   color: #642d6b;
   text-align: center;
-  
 }
-.headerLogoHeader1{
+.headerLogoHeader1 {
   font-size: 16px;
-  width:200px;
-  color:#642d6b ;
+  width: 200px;
+  color: #642d6b;
   text-align: center;
 }
 
-
-.headerNavList{
+.headerNavList {
   display: flex;
   flex-direction: row;
   column-gap: 10px;
 }
 
-.headerNavListItem{
+.headerNavListItem {
   list-style: none;
 }
-.headerNavListItemLink{
+.headerNavListItemLink {
   text-decoration: none;
   color: #642d6b;
 }

@@ -80,13 +80,18 @@
 
 .posterItemCardButton {
   padding: 10px;
-  border: none;
+  border: 1px solid #1d1e22;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   background-color: #1d1e22;
   color: #fff;
-  transition: background-color 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.posterItemCardButton:hover {
+  background-color: #3c3f4d;
+  border: 1px solid #fff;
 }
 
 @media screen and (max-width: 600px) {
@@ -97,8 +102,4 @@
     width: 100%;
     height: auto;
   }
-}
-
-.posterItemCardButton:hover {
-  background-color: #3c3f4d;
 }

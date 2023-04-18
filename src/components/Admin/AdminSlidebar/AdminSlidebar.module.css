@@ -19,6 +19,7 @@
 .adminSlidebarListItem {
   list-style: none;
   border: 1px solid #642d6b;
+  border-radius: 5px;
   padding: 5px 0;
   margin: 0 5px;
 }
@@ -27,4 +28,14 @@
   text-decoration: none;
   color: #642d6b;
   font-size: 20px;
+}
+
+@media screen and (max-width: 425px) {
+  .adminSlidebar {
+    max-width: 150px;
+  }
+
+  .adminSlidebarListItemLink {
+    font-size: 16px;
+  }
 }

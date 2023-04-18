@@ -8,9 +8,16 @@
 }
 
 .movieListDate {
+  overflow-x: scroll;
+  padding: 0 10px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 10px;
+}
+
+.movieListDate::-webkit-scrollbar {
+  height: 0;
+  background: transparent;
 }
 
 .movieListDateButton {

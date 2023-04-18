@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import Movie from "../Movie/Movie";
-import styles from "./MovieList.module.css";
-import Header from "../Header/Header";
-import { fromNumbersInMonth } from "./MovieData";
-import { UrlSession } from "../../urls";
+import React from 'react';
+import Movie from '../Movie/Movie';
+import styles from './MovieList.module.css';
+import Header from '../Header/Header';
+import { fromNumbersInMonth } from './MovieData';
+import { UrlSession } from '../../urls';
 
 const MovieList = () => {
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = React.useState('');
   const [dates, setDates] = React.useState([]);
 
-  const [sessions, setSessions] = useState([]);
+  const [sessions, setSessions] = React.useState([]);
 
   const filterSessionsByDate = () => {
     return sessions.filter((session) => session.date === selectedDate);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(UrlSession);
@@ -26,7 +26,7 @@ const MovieList = () => {
         );
         setDates(uniqueDates);
       } catch (error) {
-        console.error("There was a problem fetching the data:", error);
+        console.error('There was a problem fetching the data:', error);
       }
     };
     fetchData();
@@ -45,9 +45,9 @@ const MovieList = () => {
                   key={date}
                   onClick={() => setSelectedDate(date)}
                 >
-                  {date.split("-").slice(2).join("-") +
-                    " " +
-                    fromNumbersInMonth(parseInt(date.split("-")[1]))}
+                  {date.split('-').slice(2).join('-') +
+                    ' ' +
+                    fromNumbersInMonth(parseInt(date.split('-')[1]))}
                 </button>
               ))}
             </div>
