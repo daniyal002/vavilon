@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Movie.module.css";
 import Booking from "../Booking/Booking";
+import { Link } from "react-router-dom";
 import { UrlMovie } from "../../urls";
 
 const Movie = ({ movieId, price, time, sessionId }) => {
@@ -9,7 +10,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
   const [movieList, setMovieList] = React.useState([]);
 
   React.useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       try {
         const response = await fetch(UrlMovie + "/" + movieId);
         const data = await response.json();
@@ -17,7 +18,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
       } catch (error) {
         console.error("There was a problem fetching the data:", error);
       }
-    }
+    };
 
     fetchData();
   }, []);
@@ -41,7 +42,8 @@ const Movie = ({ movieId, price, time, sessionId }) => {
             <br />
             {movieList.description && movieList.description.length > maxLength
               ? `${movieList.description.substring(0, maxLength)}...`
-              : movieList.description}
+              : movieList.description}{" "}
+            <Link to={`movies/${movieId}`}>Далее</Link>
           </p>
 
           <div className={style.movieRaR}>

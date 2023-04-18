@@ -1,0 +1,72 @@
+.movieItem {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+  border: 2px solid #642d6b;
+}
+/* #642d6b */
+.movieItemG {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.movieItemPoster {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.movieItemDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  color: #642d6b;
+}
+
+.movieItemTitle {
+  color: #642d6b;
+  max-width: 203px;
+  height: 50px;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.movieItemDescription {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.movieItemDescriptionTitle {
+  font-size: 18px;
+  text-decoration: uppercase;
+  font-weight: bold;
+}
+
+.movieItemRating {
+  background-color: #9c2323;
+  padding: 5px 10px;
+  color: #fff;
+  font-size: 14px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.movieItemAgeLimit {
+  font-size: 14px;
+  font-weight: bold;
+  color: #642d6b;
+}
+
+.movieItemTrailer {
+  width: 100vh;
+}
