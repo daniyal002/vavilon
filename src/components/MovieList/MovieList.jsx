@@ -2,11 +2,11 @@ import React from 'react';
 import Movie from '../Movie/Movie';
 import styles from './MovieList.module.css';
 import Header from '../Header/Header';
-import { fromNumbersInMonth } from './MovieData';
+import { fromNumbersInMonth, todayDate } from './MovieData';
 import { UrlSession } from '../../urls';
 
 const MovieList = () => {
-  const [selectedDate, setSelectedDate] = React.useState('');
+  const [selectedDate, setSelectedDate] = React.useState(todayDate());
   const [dates, setDates] = React.useState([]);
 
   const [sessions, setSessions] = React.useState([]);
@@ -24,7 +24,7 @@ const MovieList = () => {
         const uniqueDates = Array.from(
           new Set(data.map((session) => session.date))
         );
-        setDates(uniqueDates);
+        setDates(uniqueDates.sort((a, b) => new Date(a) - new Date(b)));
       } catch (error) {
         console.error('There was a problem fetching the data:', error);
       }
