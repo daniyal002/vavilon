@@ -27,7 +27,8 @@
 }
 
 .bookingName,
-.bookingPhone {
+.bookingPhone,
+.bookingCountPerson {
   margin-top: 10px;
   background-color: #f1f1f1;
   color: #642d6b;
@@ -35,6 +36,10 @@
   border-radius: 5px;
   border-bottom: 2px solid #642d6b;
   padding: 10px;
+}
+
+.bookingCountPerson {
+  width: 40%;
 }
 
 .bookingBtn {
@@ -50,10 +55,13 @@
 }
 
 .bookingName::placeholder,
-.bookingPhone::placeholder {
+.bookingPhone::placeholder,
+.bookingCountPerson::placeholder {
   color: #642d6b;
 }
-
+.bookingCountPerson::placeholder {
+  font-size: 9px;
+}
 .bookingOkHeader {
   display: flex;
   align-items: center;
@@ -73,4 +81,10 @@
   text-align: center;
   color: #642d6b;
   max-width: 410px;
+}
+
+.bookingSeats {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }

@@ -1,8 +1,8 @@
-import React from "react";
-import style from "./Movie.module.css";
-import Booking from "../Booking/Booking";
-import { Link } from "react-router-dom";
-import { UrlMovie } from "../../urls";
+import React from 'react';
+import style from './Movie.module.css';
+import Booking from '../Booking/Booking';
+import { Link } from 'react-router-dom';
+import { UrlMovie } from '../../urls';
 
 const Movie = ({ movieId, price, time, sessionId }) => {
   const maxLength = 100;
@@ -12,11 +12,11 @@ const Movie = ({ movieId, price, time, sessionId }) => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(UrlMovie + "/" + movieId);
+        const response = await fetch(UrlMovie + '/' + movieId);
         const data = await response.json();
         setMovieList(data);
       } catch (error) {
-        console.error("There was a problem fetching the data:", error);
+        console.error('There was a problem fetching the data:', error);
       }
     };
 
@@ -34,7 +34,9 @@ const Movie = ({ movieId, price, time, sessionId }) => {
         <div className={style.movieInfo}>
           <h2 className={style.movieTitle}>{movieList.title}</h2>
           <div className={style.moviePT}>
-            <p className={style.moviePrice}>Цена: {price}₽</p>
+            <p className={style.moviePrice}>
+              Цена: {price.replace('.00', '')} ₽
+            </p>
             <p className={style.movieTime}>Время: {time}</p>
           </div>
           <p className={style.movieDescription}>
@@ -42,7 +44,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
             <br />
             {movieList.description && movieList.description.length > maxLength
               ? `${movieList.description.substring(0, maxLength)}...`
-              : movieList.description}{" "}
+              : movieList.description}{' '}
             <Link to={`movies/${movieId}`}>Далее</Link>
           </p>
 
@@ -52,7 +54,12 @@ const Movie = ({ movieId, price, time, sessionId }) => {
           </div>
         </div>
       </div>
-      <Booking sessionId={sessionId} time={time} movieId={movieId} />
+      <Booking
+        sessionId={sessionId}
+        time={time}
+        movieId={movieId}
+        price={price}
+      />
     </div>
   );
 };
