@@ -29,6 +29,8 @@ label {
 
 .addMovieInputText,
 .addMovieInputTextArea,
+.addMovieInputGenre,
+.addMovieInputYear,
 .addMovieInputRating,
 .addMovieInputPoster,
 .addMovieInputAgeLimit,
@@ -69,6 +71,8 @@ label {
 @media screen and (max-width: 375px) {
   .addMovieInputText,
   .addMovieInputPoster,
+  .addMovieInputGenre,
+  .addMovieInputYear,
   .addMovieInputRating,
   .addMovieInputAgeLimit,
   .addMovieInputTrailerUrl {

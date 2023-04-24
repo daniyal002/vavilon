@@ -48,15 +48,9 @@
   list-style: none;
 }
 .headerNavListItemLink {
+  background-color: #642d6b;
+  padding: 10px;
+  border-radius: 5px;
   text-decoration: none;
-  color: #642d6b;
-}
-
-@media screen and (max-width: 600px) {
-  .headerB {
-    justify-content: center;
-  }
-  .headerNavList {
-    display: none;
-  }
+  color: #fff;
 }

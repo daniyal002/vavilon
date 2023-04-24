@@ -33,6 +33,8 @@ const Movie = ({ movieId, price, time, sessionId }) => {
         />
         <div className={style.movieInfo}>
           <h2 className={style.movieTitle}>{movieList.title}</h2>
+          <p className={style.movieYear}>Год: </p>
+
           <div className={style.moviePT}>
             <p className={style.moviePrice}>
               Цена: {price.replace('.00', '')} ₽
@@ -47,6 +49,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
               : movieList.description}{' '}
             <Link to={`movies/${movieId}`}>Далее</Link>
           </p>
+          <p className={style.movieGenre}>Жанр: </p>
 
           <div className={style.movieRaR}>
             <p className={style.movieRating}>Рейтинг: {movieList.rating}</p>
