@@ -1,36 +1,36 @@
-import React from 'react';
-import style from './AddMovie.module.css';
-import { UrlMovie } from '../../../../urls';
+import React from "react";
+import style from "./AddMovie.module.css";
+import { UrlMovie } from "../../../../urls";
 
 const AddMovie = () => {
   const [addMovie, setAddMovie] = React.useState(false);
   const [formData, setFormData] = React.useState({
-    title: '',
-    year: 0,
-    poster_url: '',
-    description: '',
-    genre: '',
+    title: "",
+    year: "",
+    poster_url: "",
+    description: "",
+    genre: "",
     rating: 0,
     age_limit: 0,
-    trailer_url: '',
+    trailer_url: "",
   });
 
   const addMovieToDB = async (movie) => {
     try {
       const response = await fetch(UrlMovie, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(movie),
       });
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      console.log('Data was successfully added to the database:', data);
+      console.log("Data was successfully added to the database:", data);
     } catch (error) {
-      console.error('There was a problem adding data to the database:', error);
+      console.error("There was a problem adding data to the database:", error);
     }
   };
 
@@ -38,9 +38,8 @@ const AddMovie = () => {
     const { id, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [id]: id === 'year' ? parseInt(value) : value,
-      [id]: id === 'rating' ? parseInt(value) : value,
-      [id]: id === 'age_restriction' ? parseInt(value) : value,
+      [id]: id === "rating" ? parseInt(value) : value,
+      [id]: id === "age_restriction" ? parseInt(value) : value,
     }));
   };
 
@@ -69,9 +68,9 @@ const AddMovie = () => {
           <label htmlFor="title">Год:</label>
           <input
             className={style.addMovieInputYear}
-            type="number"
+            type="text"
             id="year"
-            value={parseInt(formData.year)}
+            value={formData.year}
             onChange={handleInputChange}
           />
 
@@ -135,7 +134,7 @@ const AddMovie = () => {
             onClick={() => setAddMovie(false)}
             className={style.addMovieClose}
           >
-            {' '}
+            {" "}
             Закрыть форму
           </button>
         </form>
