@@ -31,6 +31,7 @@
   flex-direction: column;
   align-items: stretch;
   color: #642d6b;
+  row-gap: 10px;
 }
 
 .moviePT {
@@ -62,10 +63,8 @@
 .movieTitle {
   color: #642d6b;
   max-width: 203px;
-  height: 50px;
   font-size: 22px;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .movieDescription {
@@ -79,6 +78,10 @@
   font-size: 18px;
   text-decoration: uppercase;
   font-weight: bold;
+}
+
+.movieGenre {
+  margin-bottom: 10px;
 }
 
 .movieRaR {
