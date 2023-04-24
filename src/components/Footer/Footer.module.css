@@ -1,0 +1,52 @@
+.footer {
+  background-color: #642d6b;
+  padding: 20px;
+}
+
+.footerB {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.footerMap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.footerMapAdress address {
+  color: #fff;
+  text-align: center;
+}
+
+.footerContact {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  align-items: flex-start;
+}
+
+.footerContactInst,
+.footerContactTelegram,
+.footerContactPhone {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.footerContactInstLink,
+.footerContactTelegramLink,
+.footerContactPhoneLink {
+  text-decoration: none;
+  color: #fff;
+}
+
+@media screen and (max-width: 650px) {
+  .footerB {
+    flex-direction: column-reverse;
+    align-items: center;
+    row-gap: 30px;
+  }
+}

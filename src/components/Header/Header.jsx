@@ -4,7 +4,7 @@ import logo from '../../assets/logo.png';
 
 const Header = () => {
   return (
-    <div className={style.header}>
+    <header className={style.header}>
       <div className="container">
         <div className={style.headerB}>
           <div className={style.headerLogo}>
@@ -15,13 +15,13 @@ const Header = () => {
 
           <nav className={style.headerNav}>
             <ul className={style.headerNavList}>
-              <li className={style.headerNavListItem}>
+              {/* <li className={style.headerNavListItem}>
                 <a href="#" className={style.headerNavListItemLink}>
                   Забронированные сеансы
                 </a>
-              </li>
+              </li> */}
               <li className={style.headerNavListItem}>
-                <a href="#" className={style.headerNavListItemLink}>
+                <a href="#contacts" className={style.headerNavListItemLink}>
                   Контакты
                 </a>
               </li>
@@ -29,7 +29,7 @@ const Header = () => {
           </nav>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

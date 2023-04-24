@@ -1,7 +1,7 @@
-import React from "react";
-import style from "./MovieItem.module.css";
-import MovieItemModal from "./MovieItemModal/MovieItemModal";
-import { UrlMovie } from "../../../../urls";
+import React from 'react';
+import style from './MovieItem.module.css';
+import MovieItemModal from './MovieItemModal/MovieItemModal';
+import { UrlMovie } from '../../../../urls';
 
 const MovieItem = ({
   id,
@@ -15,14 +15,14 @@ const MovieItem = ({
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const deleteMovieFromDB = async (movieId) => {
     try {
-      const response = await fetch(UrlMovie + "/" + movieId, {
-        method: "DELETE",
+      const response = await fetch(UrlMovie + '/' + movieId, {
+        method: 'DELETE',
       });
 
       const data = await response.json();
     } catch (error) {
       console.error(
-        "There was a problem deleting data from the database:",
+        'There was a problem deleting data from the database:',
         error
       );
     }
@@ -33,11 +33,11 @@ const MovieItem = ({
         <img src={poster} alt={title} />
         <div className={style.movieItemCardBody}>
           <h2 className={style.movieItemCardBodyTitle}>{title}</h2>
-          <p className={style.movieItemCardBodyDescription}>
+          {/* <p className={style.movieItemCardBodyDescription}>
             {description.length > 100
               ? `${description.slice(0, 100)}...`
               : description}
-          </p>
+          </p> */}
           <div className={style.movieItemCardBodyRaR}>
             <p className={style.movieItemCardBodyRating}>Рейтинг: {rating}</p>
             <p className={style.movieItemCardBodyAgeRestriction}>

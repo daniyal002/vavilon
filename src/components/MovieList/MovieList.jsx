@@ -4,6 +4,7 @@ import styles from './MovieList.module.css';
 import Header from '../Header/Header';
 import { fromNumbersInMonth, todayDate } from './MovieData';
 import { UrlSession } from '../../urls';
+import Footer from '../Footer/Footer';
 
 const MovieList = () => {
   const [selectedDate, setSelectedDate] = React.useState(todayDate());
@@ -35,7 +36,7 @@ const MovieList = () => {
   return (
     <>
       <Header />
-      <div className={styles.movieList}>
+      <main className={styles.movieList}>
         <div className="container">
           <div className={styles.filters}>
             <div className={styles.movieListDate}>
@@ -43,7 +44,9 @@ const MovieList = () => {
                 <button
                   className={styles.movieListDateButton}
                   key={date}
-                  onClick={() => setSelectedDate(date)}
+                  onClick={() => {
+                    setSelectedDate(date);
+                  }}
                 >
                   {date.split('-').slice(2).join('-') +
                     ' ' +
@@ -65,7 +68,8 @@ const MovieList = () => {
             ))}
           </div>
         </div>
-      </div>
+      </main>
+      <Footer />
     </>
   );
 };

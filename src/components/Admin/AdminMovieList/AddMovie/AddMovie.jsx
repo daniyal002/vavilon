@@ -6,8 +6,10 @@ const AddMovie = () => {
   const [addMovie, setAddMovie] = React.useState(false);
   const [formData, setFormData] = React.useState({
     title: '',
+    year: 0,
     poster_url: '',
     description: '',
+    genre: '',
     rating: 0,
     age_limit: 0,
     trailer_url: '',
@@ -36,6 +38,7 @@ const AddMovie = () => {
     const { id, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
+      [id]: id === 'year' ? parseInt(value) : value,
       [id]: id === 'rating' ? parseInt(value) : value,
       [id]: id === 'age_restriction' ? parseInt(value) : value,
     }));
@@ -63,6 +66,14 @@ const AddMovie = () => {
             value={formData.title}
             onChange={handleInputChange}
           />
+          <label htmlFor="title">Год:</label>
+          <input
+            className={style.addMovieInputYear}
+            type="number"
+            id="year"
+            value={parseInt(formData.year)}
+            onChange={handleInputChange}
+          />
 
           <label htmlFor="poster_url">Постер:</label>
           <input
@@ -80,6 +91,15 @@ const AddMovie = () => {
             value={formData.description}
             onChange={handleInputChange}
           ></textarea>
+
+          <label htmlFor="poster_url">Жанр:</label>
+          <input
+            className={style.addMovieInputGenre}
+            type="text"
+            id="genre"
+            value={formData.genre}
+            onChange={handleInputChange}
+          />
 
           <label htmlFor="rating">Рейтинг:</label>
           <input

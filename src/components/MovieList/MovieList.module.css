@@ -1,3 +1,7 @@
+.movieList {
+  min-height: calc(100vh - 70px);
+}
+
 .movieListB {
   display: flex;
   justify-content: center;
@@ -26,6 +30,11 @@
 }
 
 .movieListDateButton:hover {
+  background-color: #fff;
+  border: 2px solid #642d6b;
+  color: #642d6b;
+}
+.movieListDateButtonActive {
   background-color: #fff;
   border: 2px solid #642d6b;
   color: #642d6b;
