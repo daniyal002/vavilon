@@ -1,3 +1,3 @@
-export const UrlSession = 'https://90.156.210.4:5000/sessions';
-export const UrlOrder = 'https://90.156.210.4:5000/orders';
-export const UrlMovie = 'https://90.156.210.4:5000/movies';
+export const UrlSession = 'https://kinovavilon.ru/sessions';
+export const UrlOrder = 'https://kinovavilon.ru/orders';
+export const UrlMovie = 'https://kinovavilon.ru/movies';
