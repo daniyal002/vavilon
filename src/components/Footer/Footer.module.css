@@ -5,8 +5,9 @@
 
 .footerB {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  row-gap: 30px;
 }
 
 .footerMap {
@@ -15,6 +16,10 @@
   align-items: center;
   row-gap: 20px;
 }
+.footerMap iframe{
+  width: 95vw;
+  border-radius: 5px;
+}
 
 .footerMapAdress address {
   color: #fff;
@@ -22,10 +27,27 @@
 }
 
 .footerContact {
+  background-color: #f8f8f8;
   display: flex;
-  flex-direction: column;
-  row-gap: 20px;
-  align-items: flex-start;
+  flex-direction:column;
+  justify-content: center;
+  row-gap:10px;
+  border-radius: 5px;
+  padding: 10px 0;
+  box-shadow: 1px 1px 10px rgb(167, 167, 167);
+}
+.footerContactTitle{
+  text-align: center;
+  color: #642d6b;
+}
+
+.footerContactSocial{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 20px;
+  
 }
 
 .footerContactInst,
@@ -39,14 +61,33 @@
 .footerContactInstLink,
 .footerContactTelegramLink,
 .footerContactPhoneLink {
+  text-transform: uppercase;
   text-decoration: none;
-  color: #fff;
+  color: #642d6b;
 }
 
-@media screen and (max-width: 650px) {
-  .footerB {
-    flex-direction: column-reverse;
-    align-items: center;
-    row-gap: 30px;
+@media screen and (max-width: 500px) {
+   
+.footerContact{
+  row-gap: 10px;
+}
+ 
+}
+
+
+@media screen and (max-width:375px) {
+
+  .footerContactTitle{
+    font-size: 18px;
+  }
+  .footerContactInstLink,
+.footerContactTelegramLink,
+.footerContactPhoneLink {
+  font-size: 12px;
+}
+  .footerContactInstImg,
+  .footerContactTelegramImg,
+  .footerContactPhoneImg{
+    width: 24px;
   }
 }
