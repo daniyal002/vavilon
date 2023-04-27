@@ -1,3 +1,3 @@
-export const UrlSession = 'https://kinovavilon.ru/sessions';
-export const UrlOrder = 'https://kinovavilon.ru/orders';
-export const UrlMovie = 'https://kinovavilon.ru/movies';
+export const UrlSession = "http://localhost:5000/sessions";
+export const UrlOrder = "http://localhost:5000/orders";
+export const UrlMovie = "http://localhost:5000/movies";

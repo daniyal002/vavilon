@@ -1,3 +1,38 @@
+.bookingT {
+  /* width: 20%; */
+  display: flex;
+  flex-direction: column;
+}
+
+.modalBooking {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(49, 16, 51, 0.705);
+  z-index: 100;
+}
+
+.modalBookingForm {
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid #fff; */
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .modalBookingForm {
+    width: 75%;
+  }
+}
 .movieBtn {
   margin-top: 10px;
   background-color: #ef5e5f;
@@ -21,11 +56,6 @@
   transition: background-color 0.3s ease;
 }
 
-.bookingT {
-  display: flex;
-  flex-direction: column;
-}
-
 .bookingName,
 .bookingPhone,
 .bookingCountPerson {
@@ -41,10 +71,32 @@
 .bookingCountPerson {
   width: 40%;
 }
-
+.bookingOpenModal {
+  margin-top: 10px;
+  background-color: #642d6b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 .bookingBtn {
   margin-top: 10px;
   background-color: #642d6b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.BookingCloseModal {
+  margin-top: 10px;
+  background-color: #9c1924;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -61,6 +113,10 @@
 }
 .bookingCountPerson::placeholder {
   font-size: 9px;
+}
+
+.bookingTotalPrice {
+  color: #fff;
 }
 .bookingOkHeader {
   display: flex;

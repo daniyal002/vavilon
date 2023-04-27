@@ -35,24 +35,22 @@ const Movie = ({ movieId, price, time, sessionId }) => {
         </Link>
 
         <div className={style.movieInfo}>
-          <h2 className={style.movieTitle}>{movieList.title}</h2>
-          <p className={style.movieYear}>Год: {movieList.year}</p>
-
           <div className={style.moviePT}>
-            <p className={style.moviePrice}>
-              Цена: {price.replace(".00", "")} ₽
-            </p>
-            <p className={style.movieTime}>Время: {time}</p>
+            <p className={style.moviePrice}>{price.replace(".00", "")} ₽</p>
+            <p className={style.movieTime}>{time}</p>
           </div>
+          <h2 className={style.movieTitle}>{movieList.title}</h2>
+          {/* <p className={style.movieYear}>Год: {movieList.year}</p>
+          <p className={style.movieGenre}>Жанр:{movieList.genre} </p> */}
+
           <p className={style.movieDescription}>
-            <span className={style.movieDescriptionTitle}>Описание: </span>
-            <br />
+            {/* <span className={style.movieDescriptionTitle}>Описание: </span>
+            <br /> */}
             {movieList.description && movieList.description.length > maxLength
               ? `${movieList.description.substring(0, maxLength)}...`
               : movieList.description}{" "}
             <Link to={`movies/${movieId}`}>Далее</Link>
           </p>
-          <p className={style.movieGenre}>Жанр:{movieList.genre} </p>
 
           <div className={style.movieRaR}>
             <p className={style.movieRating}>Рейтинг: {movieList.rating}</p>
