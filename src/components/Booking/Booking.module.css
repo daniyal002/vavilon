@@ -71,6 +71,11 @@
 .bookingCountPerson {
   width: 40%;
 }
+
+.bookingCountPerson::-webkit-inner-spin-button{
+opacity: 1;
+}
+
 .bookingOpenModal {
   margin-top: 10px;
   background-color: #642d6b;
@@ -98,12 +103,16 @@
   margin-top: 10px;
   background-color: #9c1924;
   color: #fff;
-  border: none;
+  border: 1px solid #9c1924;
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.BookingCloseModal:hover{
+border: 1px solid #642d6b;
 }
 
 .bookingName::placeholder,
@@ -116,7 +125,7 @@
 }
 
 .bookingTotalPrice {
-  color: #fff;
+  color: #642d6b;
 }
 .bookingOkHeader {
   display: flex;
@@ -141,6 +150,42 @@
 
 .bookingSeats {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.bookingSeatsPlus,
+.bookingSeatsMinus{
+  background-color: #642d6b;
+  color: #fff;
+  border: 1px solid #642d6b;
+
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+ 
+.bookingSeatsPlus:hover,
+.bookingSeatsMinus:hover{
+  background-color: #642d6b;
+  color: #fff;
+  border: 1px solid #642d6b;
+
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#countPerson::-webkit-inner-spin-button { 
+  opacity: 0;
 }

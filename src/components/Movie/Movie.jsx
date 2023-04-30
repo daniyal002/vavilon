@@ -37,7 +37,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
         <div className={style.movieInfo}>
           <div className={style.moviePT}>
             <p className={style.moviePrice}>{price.replace(".00", "")} ₽</p>
-            <p className={style.movieTime}>{time}</p>
+            <p className={style.movieTime}>{time.slice(0, -3)}</p>
           </div>
           <h2 className={style.movieTitle}>{movieList.title}</h2>
           {/* <p className={style.movieYear}>Год: {movieList.year}</p>

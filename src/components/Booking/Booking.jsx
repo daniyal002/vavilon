@@ -29,6 +29,8 @@ const Booking = (props) => {
     fetchData();
   }, []);
 
+
+
   const currentTime = new Date();
   const dateParts = dates ? dates.split("-") : [0, 0, 0];
   const year = parseInt(dateParts[0]);
@@ -41,8 +43,28 @@ const Booking = (props) => {
   const [isBooked, setIsBooked] = useState(false);
   const [isBookingInProgress, setIsBookingInProgress] = useState(false);
 
+  const [countPerson, setCountPerson] = useState(1);
+  React.useEffect(()=>{
+    setTotalPrice(countPerson * props.price);
+  
+    },[countPerson])
+  const handleIncrement = () => {
+
+    if (countPerson < 40) {
+
+      setCountPerson(countPerson + 1);
+    }
+  };
+
+  const handleDecrement = () => {
+
+    if (countPerson > 1) {
+
+      setCountPerson(countPerson - 1);
+    }
+  };
+
   const handleInputCountPersonChange = (event) => {
-    setTotalPrice(event.target.value * props.price);
     const { id, value } = event.target;
     setBooking((booking) => ({
       ...booking,
@@ -84,7 +106,7 @@ const Booking = (props) => {
           sessionId: props.sessionId,
           customer_name: booking.name,
           customer_phone: booking.phone,
-          seats: booking.countPerson,
+          seats: countPerson,
         }),
       });
       if (response.ok) {
@@ -149,10 +171,15 @@ const Booking = (props) => {
                     name="countPerson"
                     id="countPerson"
                     placeholder="Количество человек"
+                    value={countPerson}
                     onChange={handleInputCountPersonChange}
                     min={1}
                     max={40}
                   />
+                  
+                  <button className={style.bookingSeatsPlus} onClick={handleIncrement}>+</button>
+                  <button className={style.bookingSeatsMinus} onClick={handleDecrement}>-</button>
+
                   <span className={style.bookingTotalPrice}>
                     Сумма: {totalPrice.toString().replace(".00", "")} ₽
                   </span>
