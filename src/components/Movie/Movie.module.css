@@ -172,4 +172,8 @@
   .moviePoster {
     width: 140px;
   }
+  .moviePrice, .movieTime{
+    font-size: 11px;
+  }
 }
+
