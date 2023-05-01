@@ -10,7 +10,6 @@ const PosterItemModal = ({
   date,
   price,
 }) => {
-  const URL = "http://90.156.210.4:5000/sessions/";
 
   const [updateSessions, setUpdateSessions] = React.useState({
     price: "",

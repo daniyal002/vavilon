@@ -37,6 +37,7 @@
   align-items: stretch;
   color: #642d6b;
   row-gap: 10px;
+  font-weight: bold;
 }
 
 .moviePT {
@@ -56,8 +57,8 @@
 }
 
 .movieTime {
-  background-color: #ffffff;
-  color: #642d6b;
+  background-color: #ffee50;
+  color: #000000;
   padding: 5px 10px;
   font-size: 16px;
   border-radius: 0 5px 5px 0;
@@ -105,7 +106,6 @@
 
 .ageRestriction {
   font-size: 14px;
-  font-weight: bold;
   color: #642d6b;
 }
 

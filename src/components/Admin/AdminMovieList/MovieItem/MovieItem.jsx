@@ -2,6 +2,7 @@ import React from 'react';
 import style from './MovieItem.module.css';
 import MovieItemModal from './MovieItemModal/MovieItemModal';
 import { UrlMovie } from '../../../../urls';
+import UpdateMovie from '../UpdateMovie/UpdateMovie';
 
 const MovieItem = ({
   id,
@@ -13,6 +14,9 @@ const MovieItem = ({
   trailer,
 }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalUpdateOpen, setIsModalUpdateOpen] = React.useState(false);
+
+  isModalUpdateOpen
   const deleteMovieFromDB = async (movieId) => {
     try {
       const response = await fetch(UrlMovie + '/' + movieId, {
@@ -58,6 +62,20 @@ const MovieItem = ({
               setIsModalOpen={setIsModalOpen}
               title={title}
               movieId={id}
+            />
+          )}
+
+          <button
+            className={style.movieItemCardButton}
+            onClick={() => setIsModalUpdateOpen(true)}
+          >
+            Изменить фильм
+          </button>
+
+          {isModalUpdateOpen && (
+            <UpdateMovie
+              movieId={id}
+              setIsModalUpdateOpen={setIsModalUpdateOpen}
             />
           )}
           <button
