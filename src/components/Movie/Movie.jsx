@@ -40,8 +40,8 @@ const Movie = ({ movieId, price, time, sessionId }) => {
             <p className={style.movieTime}>{time.slice(0, -3)}</p>
           </div>
           <h2 className={style.movieTitle}>{movieList.title}</h2>
-          {/* <p className={style.movieYear}>Год: {movieList.year}</p>
-          <p className={style.movieGenre}>Жанр:{movieList.genre} </p> */}
+          <p className={style.movieYear}>Год: {movieList.year}</p>
+          {/* <p className={style.movieGenre}>Жанр:{movieList.genre} </p> */}
 
           <p className={style.movieDescription}>
             {/* <span className={style.movieDescriptionTitle}>Описание: </span>
