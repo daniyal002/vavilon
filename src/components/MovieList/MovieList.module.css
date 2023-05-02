@@ -4,7 +4,17 @@
 
 .movieListB {
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  column-gap: 20px;
+  align-items: center;
+}
+
+.movieListMovieWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
   column-gap: 30px;
   flex-wrap: wrap;
   transition: 0.5s;
@@ -12,21 +22,27 @@
 }
 
 .movieListDate {
-  overflow-x: scroll;
-  padding: 0 10px;
   display: flex;
-  justify-content: flex-start;
-  margin-top: 10px;
+  justify-content: center;
+  column-gap: 10px;
+  margin: 10px;
 }
 
-.movieListDate::-webkit-scrollbar {
-  height: 0;
-  background: transparent;
+.movieListDateHeader {
+  text-align: center;
+  margin: 10px 0;
+  color: #642d6b;
 }
 
 .movieListDateButton {
   background-color: #642d6b;
+  padding: 10px;
+  border-radius: 5px;
   border: 2px solid #642d6b;
+  transition: 0.3s;
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
 }
 
 .movieListDateButton:hover {

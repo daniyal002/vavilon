@@ -16,7 +16,6 @@ const MovieItem = ({
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isModalUpdateOpen, setIsModalUpdateOpen] = React.useState(false);
 
-  isModalUpdateOpen
   const deleteMovieFromDB = async (movieId) => {
     try {
       const response = await fetch(UrlMovie + '/' + movieId, {

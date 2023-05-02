@@ -1,4 +1,5 @@
 .footer {
+  margin-top: 40px;
   background-color: #642d6b;
   padding: 20px;
 }
@@ -16,7 +17,7 @@
   align-items: center;
   row-gap: 20px;
 }
-.footerMap iframe{
+.footerMap iframe {
   width: 95vw;
   border-radius: 5px;
 }
@@ -29,25 +30,24 @@
 .footerContact {
   background-color: #f8f8f8;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
-  row-gap:10px;
+  row-gap: 10px;
   border-radius: 5px;
   padding: 10px 0;
   box-shadow: 1px 1px 10px rgb(167, 167, 167);
 }
-.footerContactTitle{
+.footerContactTitle {
   text-align: center;
   color: #642d6b;
 }
 
-.footerContactSocial{
+.footerContactSocial {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   column-gap: 20px;
-  
 }
 
 .footerContactInst,
@@ -67,27 +67,23 @@
 }
 
 @media screen and (max-width: 500px) {
-   
-.footerContact{
-  row-gap: 10px;
-}
- 
+  .footerContact {
+    row-gap: 10px;
+  }
 }
 
-
-@media screen and (max-width:375px) {
-
-  .footerContactTitle{
+@media screen and (max-width: 375px) {
+  .footerContactTitle {
     font-size: 18px;
   }
   .footerContactInstLink,
-.footerContactTelegramLink,
-.footerContactPhoneLink {
-  font-size: 12px;
-}
+  .footerContactTelegramLink,
+  .footerContactPhoneLink {
+    font-size: 12px;
+  }
   .footerContactInstImg,
   .footerContactTelegramImg,
-  .footerContactPhoneImg{
+  .footerContactPhoneImg {
     width: 24px;
   }
 }
