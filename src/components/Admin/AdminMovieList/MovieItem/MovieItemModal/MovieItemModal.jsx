@@ -1,12 +1,13 @@
-import React from "react";
-import style from "./MovieItemModal.module.css";
-import { UrlSession } from "../../../../../urls";
+import React from 'react';
+import style from './MovieItemModal.module.css';
+import { UrlSession } from '../../../../../urls';
 
 const MovieItemModal = ({ setIsModalOpen, title, movieId }) => {
   const [formData, setFormData] = React.useState({
-    price: "",
-    time: "",
-    date: "",
+    price: '',
+    time: '',
+    date: '',
+    day: 'today',
   });
   const handleInputChange = (event) => {
     const { id, value } = event.target;
@@ -21,28 +22,29 @@ const MovieItemModal = ({ setIsModalOpen, title, movieId }) => {
     // сохранение данных в базу данных или отправка на сервер
     try {
       const response = await fetch(UrlSession, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           movieId: movieId,
           time: formData.time,
           date: formData.date,
           price: formData.price,
+          day: formData.day === 'today' ? 'today' : 'tomorrow',
         }),
       });
       if (response.ok) {
-        console.log("Новый сеанс успешно добавлен");
+        console.log('Новый сеанс успешно добавлен');
         setIsModalOpen(false);
       } else {
         console.error(
-          "Ошибка при добавлении нового сеанса:",
+          'Ошибка при добавлении нового сеанса:',
           response.statusText
         );
       }
     } catch (error) {
-      console.log("Ошибка при отправке запроса:", error);
+      console.log('Ошибка при отправке запроса:', error);
     }
     setIsModalOpen(false);
   };
@@ -77,6 +79,15 @@ const MovieItemModal = ({ setIsModalOpen, title, movieId }) => {
           value={formData.date}
           onChange={handleInputChange}
         />
+        <select
+          name="day"
+          id="day"
+          value={formData.day}
+          onChange={handleInputChange}
+        >
+          <option value="today">Сегодня</option>
+          <option value="tomorrow">Завтра</option>
+        </select>
 
         <button onClick={handleSave}>Добавить</button>
         <button onClick={() => setIsModalOpen(false)}>Отмена</button>

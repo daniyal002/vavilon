@@ -2,19 +2,19 @@ import React from 'react';
 import Movie from '../Movie/Movie';
 import styles from './MovieList.module.css';
 import Header from '../Header/Header';
-import { fromNumbersInMonth, todayDate } from './MovieData';
+import { todayDate } from './MovieData';
 import { UrlSession } from '../../urls';
 import Footer from '../Footer/Footer';
 
 const MovieList = () => {
-  const [selectedDate, setSelectedDate] = React.useState(todayDate());
-  const [dates, setDates] = React.useState([]);
-
+  const [selectedDate, setSelectedDate] = React.useState('today');
   const [sessions, setSessions] = React.useState([]);
 
   const filterSessionsByDate = () => {
-    return sessions.filter((session) => session.date === selectedDate);
+    return sessions.filter((session) => session.day === selectedDate);
   };
+
+  const [days, setDays] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -22,10 +22,10 @@ const MovieList = () => {
         const response = await fetch(UrlSession);
         const data = await response.json();
         setSessions(data);
-        const uniqueDates = Array.from(
-          new Set(data.map((session) => session.date))
+        const uniqueDays = Array.from(
+          new Set(data.map((session) => session.day))
         );
-        setDates(uniqueDates.sort((a, b) => new Date(a) - new Date(b)));
+        setDays(uniqueDays.sort());
       } catch (error) {
         console.error('There was a problem fetching the data:', error);
       }
@@ -33,27 +33,29 @@ const MovieList = () => {
     fetchData();
   }, []);
 
+  const [today, setToday] = React.useState('today');
+
   return (
     <>
       <Header />
       <main className={styles.movieList}>
         <div className="container">
-          <div className={styles.filters}>
-            <div className={styles.movieListDate}>
-              {dates.map((date) => (
-                <button
-                  className={styles.movieListDateButton}
-                  key={date}
-                  onClick={() => {
-                    setSelectedDate(date);
-                  }}
-                >
-                  {date.split('-').slice(2).join('-') +
-                    ' ' +
-                    fromNumbersInMonth(parseInt(date.split('-')[1]))}
-                </button>
-              ))}
-            </div>
+          <div className={styles.movieListDate}>
+            {days.map((day) => (
+              <button
+                className={
+                  styles.movieListDateButton +
+                  (today === day ? ' ' + styles.movieListDateButtonActive : '')
+                }
+                key={day}
+                onClick={() => {
+                  setToday(day);
+                  setSelectedDate(day);
+                }}
+              >
+                {day === 'today' ? 'Сегодня' : 'Завтра'}
+              </button>
+            ))}
           </div>
           <div className={styles.movieListB}>
             {filterSessionsByDate().map((session) => (
