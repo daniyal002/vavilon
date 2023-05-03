@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import style from './AdminCustomer.module.css';
-import CustomerItem from './CustomerItem/CustomerItem';
-import AdminSlidebar from '../AdminSlidebar/AdminSlidebar';
-import { UrlOrder } from '../../../urls';
+import React, { useState, useEffect } from "react";
+import style from "./AdminCustomer.module.css";
+import CustomerItem from "./CustomerItem/CustomerItem";
+import AdminSlidebar from "../AdminSlidebar/AdminSlidebar";
+import { UrlOrder } from "../../../urls";
 
 function AdminCustomer() {
   const [ordersData, setOrdersData] = useState({});
-  const [countPerson, setCountPerson] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,8 +34,8 @@ function AdminCustomer() {
 
   const deleteCustomer = async (ordersId) => {
     try {
-      const response = await fetch(UrlOrder + '/' + ordersId, {
-        method: 'DELETE',
+      const response = await fetch(UrlOrder + "/" + ordersId, {
+        method: "DELETE",
       });
       const data = response.json();
     } catch (error) {
@@ -50,11 +49,16 @@ function AdminCustomer() {
       <div className={style.adminCustomer}>
         {/* Цикл по каждому sessionId */}
         {Object.keys(ordersData).map((sessionId) => {
-          let totalSeats = 0;
+          const sessionOrders = ordersData[sessionId];
+          const totalSeats = sessionOrders.reduce(
+            (total, order) => total + order.seats,
+            0
+          );
+
           return (
             <div key={sessionId} className={style.adminCustomerSessionId}>
               {/* Отображение sessionId */}
-              <CustomerItem sessionId={sessionId} countPerson={countPerson} />
+              <CustomerItem sessionId={sessionId} countPerson={totalSeats} />
               {/* Цикл по каждому заказу с текущим sessionId */}
               <table className={style.adminTable}>
                 <thead className={style.adminTableHeader}>
