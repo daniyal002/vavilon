@@ -162,6 +162,7 @@
 
   .movieDescription {
     height: auto;
+    max-width: 115px;
   }
 }
 
@@ -172,8 +173,8 @@
   .moviePoster {
     width: 140px;
   }
-  .moviePrice, .movieTime{
+  .moviePrice,
+  .movieTime {
     font-size: 11px;
   }
 }
-

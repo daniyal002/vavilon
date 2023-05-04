@@ -14,6 +14,33 @@ const Booking = (props) => {
 
   const [totalPrice, setTotalPrice] = React.useState(props.price);
   const [dates, setDates] = React.useState();
+  const [bookedSeats, setBookedSeats] = useState(0);
+
+  React.useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch(UrlOrder);
+        const data = await response.json();
+
+        // Фильтрация заказов по sessionId
+        const ordersForSession = data.filter(
+          (order) => order.sessionId === props.sessionId
+        );
+
+        // Подсчет общего количества занятых мест
+        const totalBookedSeats = ordersForSession.reduce(
+          (total, order) => total + order.seats,
+          0
+        );
+
+        setBookedSeats(totalBookedSeats);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchOrders();
+  }, [props.sessionId]);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -29,8 +56,6 @@ const Booking = (props) => {
     fetchData();
   }, []);
 
-
-
   const currentTime = new Date();
   const dateParts = dates ? dates.split("-") : [0, 0, 0];
   const year = parseInt(dateParts[0]);
@@ -44,22 +69,17 @@ const Booking = (props) => {
   const [isBookingInProgress, setIsBookingInProgress] = useState(false);
 
   const [countPerson, setCountPerson] = useState(1);
-  React.useEffect(()=>{
+  React.useEffect(() => {
     setTotalPrice(countPerson * props.price);
-  
-    },[countPerson])
+  }, [countPerson]);
   const handleIncrement = () => {
-
-    if (countPerson < 40) {
-
+    if (countPerson < 40 - bookedSeats) {
       setCountPerson(countPerson + 1);
     }
   };
 
   const handleDecrement = () => {
-
     if (countPerson > 1) {
-
       setCountPerson(countPerson - 1);
     }
   };
@@ -174,11 +194,21 @@ const Booking = (props) => {
                     value={countPerson}
                     onChange={handleInputCountPersonChange}
                     min={1}
-                    max={40}
+                    max={40 - bookedSeats}
                   />
-                  
-                  <button className={style.bookingSeatsPlus} onClick={handleIncrement}>+</button>
-                  <button className={style.bookingSeatsMinus} onClick={handleDecrement}>-</button>
+
+                  <button
+                    className={style.bookingSeatsPlus}
+                    onClick={handleIncrement}
+                  >
+                    +
+                  </button>
+                  <button
+                    className={style.bookingSeatsMinus}
+                    onClick={handleDecrement}
+                  >
+                    -
+                  </button>
 
                   <span className={style.bookingTotalPrice}>
                     Сумма: {totalPrice.toString().replace(".00", "")} ₽
