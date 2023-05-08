@@ -72,8 +72,8 @@
   width: 40%;
 }
 
-.bookingCountPerson::-webkit-inner-spin-button{
-opacity: 1;
+.bookingCountPerson::-webkit-inner-spin-button {
+  opacity: 1;
 }
 
 .bookingOpenModal {
@@ -111,8 +111,8 @@ opacity: 1;
   transition: background-color 0.3s ease;
 }
 
-.BookingCloseModal:hover{
-border: 1px solid #642d6b;
+.BookingCloseModal:hover {
+  border: 1px solid #642d6b;
 }
 
 .bookingName::placeholder,
@@ -126,6 +126,14 @@ border: 1px solid #642d6b;
 
 .bookingTotalPrice {
   color: #642d6b;
+}
+
+.bookingOk {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: stretch;
+  row-gap: 10px;
 }
 .bookingOkHeader {
   display: flex;
@@ -159,7 +167,7 @@ border: 1px solid #642d6b;
 }
 
 .bookingSeatsPlus,
-.bookingSeatsMinus{
+.bookingSeatsMinus {
   background-color: #642d6b;
   color: #fff;
   border: 1px solid #642d6b;
@@ -171,9 +179,9 @@ border: 1px solid #642d6b;
   cursor: pointer;
   transition: 0.5s;
 }
- 
+
 .bookingSeatsPlus:hover,
-.bookingSeatsMinus:hover{
+.bookingSeatsMinus:hover {
   background-color: #642d6b;
   color: #fff;
   border: 1px solid #642d6b;
@@ -186,6 +194,15 @@ border: 1px solid #642d6b;
   transition: 0.5s;
 }
 
-#countPerson::-webkit-inner-spin-button { 
+#countPerson::-webkit-inner-spin-button {
   opacity: 0;
+}
+
+.bookingCancel {
+  background-color: #9c2323;
+}
+
+.bookingCancel:hover {
+  background-color: #751a1a;
+  color: #fff;
 }
