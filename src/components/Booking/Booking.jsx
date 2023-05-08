@@ -5,6 +5,7 @@ import { UrlOrder, UrlSession } from "../../urls";
 
 const Booking = (props) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [orderId, setOrderId] = React.useState(0);
 
   const [booking, setBooking] = React.useState({
     name: "",
@@ -130,9 +131,14 @@ const Booking = (props) => {
         }),
       });
       if (response.ok) {
+        const data = await response.json(); // Получить данные из ответа сервера
         bookMovie(props.sessionId, booking);
         setIsBooked(true);
-        console.log("Бронирование прошло успешно");
+        console.log(
+          "Бронирование прошло успешно. Созданный идентификатор:",
+          data.id
+        );
+        setOrderId(data.id); // Вернуть созданный идентификатор
       } else {
         console.error("Ошибка при бронировании:", response.statusText);
       }
@@ -140,6 +146,28 @@ const Booking = (props) => {
       console.log("Ошибка при отправке запроса:", error);
     }
     setIsBookingInProgress(false);
+  };
+
+  const cancelBooking = async (sessionId, bookingId) => {
+    console.log("orderId>>", orderId);
+    console.log(bookingId);
+    try {
+      // Отправляем запрос на удаление бронирования из базы данных
+      await fetch(`${UrlOrder}/${orderId}`, { method: "DELETE" });
+
+      // Получаем информацию о бронированиях из локального хранилища
+      const storedBookings = JSON.parse(localStorage.getItem(sessionId)) || {};
+
+      // Удаляем бронирование с указанным id из локального хранилища
+      delete storedBookings[bookingId];
+
+      // Сохраняем обновленную информацию о бронированиях в локальное хранилище
+      localStorage.setItem(sessionId, JSON.stringify(storedBookings));
+
+      console.log("Бронирование успешно отменено");
+    } catch (error) {
+      console.error("Ошибка при отмене бронирования:", error);
+    }
   };
 
   React.useEffect(() => {
@@ -248,6 +276,14 @@ const Booking = (props) => {
             Оплата производится на месте. <br />
             На кассе назовите ваше имя или номер телефона
           </p>
+          <button
+            className={style.bookingCancel}
+            onClick={() => {
+              cancelBooking(props.sessionId, booking.id);
+            }}
+          >
+            Отменить бронирование
+          </button>
         </div>
       )}
     </div>
