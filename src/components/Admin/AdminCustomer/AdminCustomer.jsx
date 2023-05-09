@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import style from "./AdminCustomer.module.css";
-import CustomerItem from "./CustomerItem/CustomerItem";
-import AdminSlidebar from "../AdminSlidebar/AdminSlidebar";
-import { UrlOrder } from "../../../urls";
+import React, { useState, useEffect } from 'react';
+import style from './AdminCustomer.module.css';
+import CustomerItem from './CustomerItem/CustomerItem';
+import AdminSlidebar from '../AdminSlidebar/AdminSlidebar';
+import { UrlOrder } from '../../../urls';
 
 function AdminCustomer() {
   const [ordersData, setOrdersData] = useState({});
@@ -34,8 +34,8 @@ function AdminCustomer() {
 
   const deleteCustomer = async (ordersId) => {
     try {
-      const response = await fetch(UrlOrder + "/" + ordersId, {
-        method: "DELETE",
+      const response = await fetch(UrlOrder + '/' + ordersId, {
+        method: 'DELETE',
       });
       const data = response.json();
     } catch (error) {
@@ -63,7 +63,6 @@ function AdminCustomer() {
               <table className={style.adminTable}>
                 <thead className={style.adminTableHeader}>
                   <tr className={style.adminTableHeaderRow}>
-                    <th className={style.adminTableHeaderHead}>Имя</th>
                     <th className={style.adminTableHeaderHead}>
                       Номер телефона
                     </th>
@@ -78,12 +77,6 @@ function AdminCustomer() {
                   {ordersData[sessionId].map((order) => {
                     return (
                       <tr key={order.id} className={style.adminTableBodyRow}>
-                        <td className={style.adminTableBodyColumn}>
-                          <div className={style.adminCustomerName}>
-                            {order.customer_name}
-                          </div>
-                        </td>
-
                         <td className={style.adminTableBodyColumn}>
                           <div className={style.adminCustomerPhone}>
                             {order.customer_phone}
