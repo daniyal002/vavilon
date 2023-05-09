@@ -11,7 +11,17 @@ const MovieList = () => {
   const [sessions, setSessions] = React.useState([]);
 
   const filterSessionsByDate = () => {
-    return sessions.filter((session) => session.day === selectedDate);
+    return sessions
+      .sort((a, b) => {
+        // Sort by date first
+        if (a.date > b.date) return 1;
+        if (a.date < b.date) return -1;
+        // If the dates are equal, sort by time
+        if (a.time < b.time) return -1;
+        if (a.time > b.time) return 1;
+        return 0;
+      })
+      .filter((session) => session.day === selectedDate);
   };
 
   const [days, setDays] = React.useState([]);
