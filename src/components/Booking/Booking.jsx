@@ -5,10 +5,8 @@ import { UrlOrder, UrlSession } from '../../urls';
 
 const Booking = (props) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [orderId, setOrderId] = React.useState(0);
 
   const [booking, setBooking] = React.useState({
-    name: '',
     phone: '',
     countPerson: 0,
   });
@@ -101,7 +99,8 @@ const Booking = (props) => {
     }));
   };
 
-  const bookMovie = (sessionId, booking) => {
+  const bookMovie = (sessionId, booking, orderId) => {
+    console.log(orderId);
     const storedBookings = JSON.parse(localStorage.getItem(sessionId)) || {};
     const updatedBookings = {
       ...storedBookings,
@@ -111,6 +110,7 @@ const Booking = (props) => {
       },
     };
     localStorage.setItem(sessionId, JSON.stringify(updatedBookings));
+    localStorage.setItem(`${sessionId}_orderId`, orderId);
   };
 
   const handleBookMovie = async () => {
@@ -125,30 +125,32 @@ const Booking = (props) => {
         },
         body: JSON.stringify({
           sessionId: props.sessionId,
-          customer_name: booking.name,
+          customer_name: '_',
           customer_phone: booking.phone,
           seats: countPerson,
         }),
       });
       if (response.ok) {
         const data = await response.json(); // Получить данные из ответа сервера
-        bookMovie(props.sessionId, booking);
+
+        bookMovie(props.sessionId, booking, data.id);
         setIsBooked(true);
         console.log(
           'Бронирование прошло успешно. Созданный идентификатор:',
           data.id
         );
-        setOrderId(data.id); // Вернуть созданный идентификатор
       } else {
         console.error('Ошибка при бронировании:', response.statusText);
       }
     } catch (error) {
       console.log('Ошибка при отправке запроса:', error);
     }
+
     setIsBookingInProgress(false);
   };
 
   const cancelBooking = async (sessionId, bookingId) => {
+    const orderId = localStorage.getItem(`${sessionId}_orderId`);
     console.log('orderId>>', orderId);
     console.log(bookingId);
     try {
@@ -198,13 +200,6 @@ const Booking = (props) => {
             <div className={style.modalBooking}>
               <div className={style.modalBookingForm}>
                 <input
-                  type="text"
-                  placeholder="Имя"
-                  id="name"
-                  className={style.bookingName}
-                  onChange={handleInputChange}
-                />
-                <input
                   className={style.bookingPhone}
                   type="tel"
                   name="phone"
@@ -226,16 +221,16 @@ const Booking = (props) => {
                   />
 
                   <button
-                    className={style.bookingSeatsPlus}
-                    onClick={handleIncrement}
-                  >
-                    +
-                  </button>
-                  <button
                     className={style.bookingSeatsMinus}
                     onClick={handleDecrement}
                   >
                     -
+                  </button>
+                  <button
+                    className={style.bookingSeatsPlus}
+                    onClick={handleIncrement}
+                  >
+                    +
                   </button>
 
                   <span className={style.bookingTotalPrice}>
