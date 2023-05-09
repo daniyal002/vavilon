@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import style from "./Booking.module.css";
-import check from "../../assets/icons/check.svg";
-import { UrlOrder, UrlSession } from "../../urls";
+import React, { useState } from 'react';
+import style from './Booking.module.css';
+import check from '../../assets/icons/check.svg';
+import { UrlOrder, UrlSession } from '../../urls';
 
 const Booking = (props) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [orderId, setOrderId] = React.useState(0);
 
   const [booking, setBooking] = React.useState({
-    name: "",
-    phone: "",
+    name: '',
+    phone: '',
     countPerson: 0,
   });
 
@@ -46,7 +46,7 @@ const Booking = (props) => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(UrlSession + "/" + props.sessionId);
+        const response = await fetch(UrlSession + '/' + props.sessionId);
         const data = await response.json();
         setDates(data.date);
       } catch (error) {
@@ -58,12 +58,12 @@ const Booking = (props) => {
   }, []);
 
   const currentTime = new Date();
-  const dateParts = dates ? dates.split("-") : [0, 0, 0];
+  const dateParts = dates ? dates.split('-') : [0, 0, 0];
   const year = parseInt(dateParts[0]);
   const month = parseInt(dateParts[1]) - 1;
   const day = parseInt(dateParts[2]);
 
-  const [hours, minutes] = props.time ? props.time.split(":") : [0, 0];
+  const [hours, minutes] = props.time ? props.time.split(':') : [0, 0];
   const showTime = new Date(year, month, day, hours, minutes);
 
   const [isBooked, setIsBooked] = useState(false);
@@ -89,7 +89,7 @@ const Booking = (props) => {
     const { id, value } = event.target;
     setBooking((booking) => ({
       ...booking,
-      [id]: id === "countPerson" ? parseInt(value) : value,
+      [id]: id === 'countPerson' ? parseInt(value) : value,
     }));
   };
 
@@ -119,9 +119,9 @@ const Booking = (props) => {
 
     try {
       const response = await fetch(UrlOrder, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           sessionId: props.sessionId,
@@ -135,25 +135,25 @@ const Booking = (props) => {
         bookMovie(props.sessionId, booking);
         setIsBooked(true);
         console.log(
-          "Бронирование прошло успешно. Созданный идентификатор:",
+          'Бронирование прошло успешно. Созданный идентификатор:',
           data.id
         );
         setOrderId(data.id); // Вернуть созданный идентификатор
       } else {
-        console.error("Ошибка при бронировании:", response.statusText);
+        console.error('Ошибка при бронировании:', response.statusText);
       }
     } catch (error) {
-      console.log("Ошибка при отправке запроса:", error);
+      console.log('Ошибка при отправке запроса:', error);
     }
     setIsBookingInProgress(false);
   };
 
   const cancelBooking = async (sessionId, bookingId) => {
-    console.log("orderId>>", orderId);
+    console.log('orderId>>', orderId);
     console.log(bookingId);
     try {
       // Отправляем запрос на удаление бронирования из базы данных
-      await fetch(`${UrlOrder}/${orderId}`, { method: "DELETE" });
+      await fetch(`${UrlOrder}/${orderId}`, { method: 'DELETE' });
 
       // Получаем информацию о бронированиях из локального хранилища
       const storedBookings = JSON.parse(localStorage.getItem(sessionId)) || {};
@@ -164,9 +164,9 @@ const Booking = (props) => {
       // Сохраняем обновленную информацию о бронированиях в локальное хранилище
       localStorage.setItem(sessionId, JSON.stringify(storedBookings));
 
-      console.log("Бронирование успешно отменено");
+      console.log('Бронирование успешно отменено');
     } catch (error) {
-      console.error("Ошибка при отмене бронирования:", error);
+      console.error('Ошибка при отмене бронирования:', error);
     }
   };
 
@@ -239,7 +239,7 @@ const Booking = (props) => {
                   </button>
 
                   <span className={style.bookingTotalPrice}>
-                    Сумма: {totalPrice.toString().replace(".00", "")} ₽
+                    Сумма: {totalPrice.toString().replace('.00', '')} ₽
                   </span>
                 </div>
 
@@ -248,7 +248,7 @@ const Booking = (props) => {
                   disabled={isBookingInProgress}
                   onClick={handleBookMovie}
                 >
-                  {isBookingInProgress ? "Бронирование..." : "Забронировать"}
+                  {isBookingInProgress ? 'Бронирование...' : 'Забронировать'}
                 </button>
 
                 <button
@@ -279,6 +279,7 @@ const Booking = (props) => {
           <button
             className={style.bookingCancel}
             onClick={() => {
+              setIsBooked(false);
               cancelBooking(props.sessionId, booking.id);
             }}
           >
