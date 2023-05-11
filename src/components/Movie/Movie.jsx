@@ -19,7 +19,6 @@ const Movie = ({ movieId, price, time, sessionId }) => {
         console.error("There was a problem fetching the data:", error);
       }
     };
-    console.log(movieList);
     fetchData();
   }, []);
 

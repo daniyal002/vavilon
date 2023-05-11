@@ -15,13 +15,9 @@ const Footer = () => {
                 Адрес: просп. Али-Гаджи Акушинского, 119, Махачкала
               </address>
             </div>
+            {/* <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Af618ca357d4d11049ffd45737a36e8c5de8d603c8c81fd368f77a37d877049b1&amp;source=constructor" width="100%" height="200" frameborder="0"></iframe> */}
           </div>
-          <script
-            type="text/javascript"
-            charset="utf-8"
-            async
-            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Acc51fbe3c62d0748105f81393a29f718b25efebc71bd23c8b7cb39f13a0b2cef&amp;width=100%25&amp;height=512&amp;lang=ru_RU&amp;scroll=true"
-          ></script>
+
           <div className={style.footerContact}>
             <h2 className={style.footerContactTitle}>Контакты:</h2>
             <div className={style.footerContactSocial}>
