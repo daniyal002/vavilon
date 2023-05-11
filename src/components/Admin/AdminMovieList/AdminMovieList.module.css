@@ -1,5 +1,5 @@
 .adminMovieList {
-  margin-left: 200px;
+  margin-top: 100px;
 }
 
 .adminMovieListItem {
@@ -21,10 +21,6 @@
 }
 
 @media screen and (max-width: 425px) {
-  .adminMovieList {
-    margin-left: 150px;
-  }
-
   .adminMovieListSearchBar {
     justify-content: flex-start;
   }

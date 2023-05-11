@@ -1,12 +1,12 @@
-import React from 'react';
-import style from './AdminMoviePoster.module.css';
-import AdminSlidebar from '../AdminSlidebar/AdminSlidebar';
-import PosterItem from './PosterItem/PosterItem';
-import { UrlSession } from '../../../urls';
-import { fromNumbersInMonth } from '../../MovieList/MovieData';
+import React from "react";
+import style from "./AdminMoviePoster.module.css";
+import AdminSlidebar from "../AdminSlidebar/AdminSlidebar";
+import PosterItem from "./PosterItem/PosterItem";
+import { UrlSession } from "../../../urls";
+import { fromNumbersInMonth } from "../../MovieList/MovieData";
 
 const AdminMoviePoster = () => {
-  const [selectedDate, setSelectedDate] = React.useState('');
+  const [selectedDate, setSelectedDate] = React.useState("");
   const [dates, setDates] = React.useState([]);
 
   const [sessionList, setSessionList] = React.useState([]);
@@ -26,7 +26,7 @@ const AdminMoviePoster = () => {
         );
         setDates(uniqueDates);
       } catch (error) {
-        console.error('There was a problem fetching the data:', error);
+        console.error("There was a problem fetching the data:", error);
       }
     };
     fetchData();
@@ -35,7 +35,7 @@ const AdminMoviePoster = () => {
   return (
     <>
       <AdminSlidebar />
-      <div className={style.adminMovieList}>
+      <div className={style.adminMoviePoster}>
         <div className={style.filters}>
           <div className={style.movieListDate}>
             {dates.map((date) => (
@@ -44,9 +44,9 @@ const AdminMoviePoster = () => {
                 key={date}
                 onClick={() => setSelectedDate(date)}
               >
-                {date.split('-').slice(2).join('-') +
-                  ' ' +
-                  fromNumbersInMonth(parseInt(date.split('-')[1]))}
+                {date.split("-").slice(2).join("-") +
+                  " " +
+                  fromNumbersInMonth(parseInt(date.split("-")[1]))}
               </button>
             ))}
           </div>

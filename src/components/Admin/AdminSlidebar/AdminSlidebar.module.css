@@ -1,40 +1,67 @@
-.adminSlidebar {
+.menuButton {
+  display: block;
   position: fixed;
-  display: flex;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+  color: #fff;
+  border: 2px solid #642d6b;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.adminSlidebar {
+  display: none;
+  background-color: #642d6bd8;
+  flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  max-width: 200px;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+
+.showMenu {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: 0.5s;
   height: 100%;
-  border-right: 5px solid #642d6b;
 }
 
 .adminSlidebarList {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   justify-content: space-around;
   text-align: center;
 }
 
 .adminSlidebarListItem {
+  border: 1px solid #fff;
   list-style: none;
-  border: 1px solid #642d6b;
   border-radius: 5px;
-  padding: 5px 0;
-  margin: 0 5px;
+  padding: 10px;
 }
 
 .adminSlidebarListItemLink {
   text-decoration: none;
-  color: #642d6b;
+  color: #ffffff;
   font-size: 20px;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .adminSlidebar {
-    max-width: 150px;
+    align-items: center;
   }
 
+  .adminSlidebarList {
+    row-gap: 10px;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 425px) {
   .adminSlidebarListItemLink {
     font-size: 16px;
   }

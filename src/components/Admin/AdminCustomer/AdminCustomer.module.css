@@ -1,8 +1,8 @@
 .adminCustomer {
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 200px;
 }
 
 .adminCustomerSessionId {
