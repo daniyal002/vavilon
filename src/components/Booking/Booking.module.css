@@ -87,6 +87,20 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
+.bookedNotSeats {
+  margin-top: 20px;
+  text-align: center;
+  margin-top: 10px;
+  background-color: #642d6b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
 .bookingBtn {
   margin-top: 10px;
   background-color: #642d6b;
