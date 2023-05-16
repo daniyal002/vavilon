@@ -114,6 +114,20 @@ const Booking = (props) => {
   };
 
   const handleBookMovie = async () => {
+    try {
+      const botToken = "6274864855:AAE1bq7lFVYIh66EIvtMB46xh2z8h_lskTw";
+      const chatId = "-861696017";
+      const message = `Новая бронь по номеру ${booking.phone}  на ${countPerson} мест`;
+
+      const response = await fetch(
+        `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(
+          message
+        )}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+
     setIsModalOpen(false);
     setIsBookingInProgress(true);
 
@@ -150,6 +164,20 @@ const Booking = (props) => {
   };
 
   const cancelBooking = async (sessionId, bookingId) => {
+    try {
+      const botToken = "6274864855:AAE1bq7lFVYIh66EIvtMB46xh2z8h_lskTw";
+      const chatId = "-861696017";
+      const message = `Бронь по номеру ${booking.phone}  на ${countPerson} мест удалена`;
+
+      const response = await fetch(
+        `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(
+          message
+        )}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+
     const orderId = localStorage.getItem(`${sessionId}_orderId`);
     console.log("orderId>>", orderId);
     console.log(bookingId);
@@ -183,9 +211,11 @@ const Booking = (props) => {
   return (
     <div className={style.booking}>
       {showTime < currentTime ? (
-        <button className={style.movieBtnD} disabled>
-          Сеанс завершен
-        </button>
+        <div className={style.movieBtnDisbled}>
+          <button className={style.movieBtnD} disabled>
+            Сеанс завершен
+          </button>
+        </div>
       ) : !isBooked ? (
         <div className={style.bookingT}>
           {bookedSeats >= 40 ? (
