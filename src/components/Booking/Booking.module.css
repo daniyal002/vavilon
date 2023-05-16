@@ -61,6 +61,12 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.movieBtnD:hover{
+  background-color: #4b4b4b;
+  color: #fff;
+
+
+}
 
 .bookingName,
 .bookingPhone,
@@ -86,12 +92,15 @@
   margin-top: 10px;
   background-color: #642d6b;
   color: #fff;
-  border: none;
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.bookingOpenModal:hover{
+  border: 1px solid #642d6b;
 }
 
 .bookedNotSeats {

@@ -12,6 +12,7 @@
   border-radius: 10px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  justify-content: space-between;
 }
 
 .posterItemCard img {
@@ -73,12 +74,15 @@
 
 .posterItemCardButtons {
   display: flex;
+  flex-direction: column;
+  row-gap: 10px;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   margin: 10px;
 }
 
 .posterItemCardButton {
+  width: 100%;
   padding: 10px;
   border: 1px solid #1d1e22;
   border-radius: 5px;

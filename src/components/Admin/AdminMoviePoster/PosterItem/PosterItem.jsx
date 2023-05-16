@@ -2,6 +2,7 @@ import React from "react";
 import style from "./PosterItem.module.css";
 import PosterItemModal from "./PosterItemModal/PosterItemModal";
 import { UrlSession, UrlMovie } from "../../../../urls";
+import PosterBooking from "./PosterBooking/PosterBooking";
 
 const PosterItem = ({
   posterId,
@@ -96,6 +97,14 @@ const PosterItem = ({
               price={price}
             />
           )}
+
+          <PosterBooking
+          sessionId={posterId}
+          title={movieList.title}
+          time={time}
+          movieId={movieId}
+          price={price}
+          />
         </div>
       </div>
     </div>

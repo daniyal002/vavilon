@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import style from "./Booking.module.css";
-import check from "../../assets/icons/check.svg";
-import { UrlOrder, UrlSession } from "../../urls";
+import style from "./PosterBookin.module.css";
+// import check from "../../assets/icons/check.svg";
+import { UrlOrder, UrlSession } from "../../../../../urls";
 
-const Booking = (props) => {
+const PosterBooking = (props) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const [booking, setBooking] = React.useState({
@@ -91,33 +91,11 @@ const Booking = (props) => {
     }));
   };
 
-  const handleInputChange = (event) => {
-    const { id, value } = event.target;
-    setBooking((booking) => ({
-      ...booking,
-      [id]: value,
-    }));
-  };
-
-  const bookMovie = (sessionId, booking, orderId) => {
-    console.log(orderId);
-    const storedBookings = JSON.parse(localStorage.getItem(sessionId)) || {};
-    const updatedBookings = {
-      ...storedBookings,
-      [booking.id]: {
-        ...booking,
-        id: sessionId, // Set the id of the booking to the sessionId
-      },
-    };
-    localStorage.setItem(sessionId, JSON.stringify(updatedBookings));
-    localStorage.setItem(`${sessionId}_orderId`, orderId);
-  };
-
   const handleBookMovie = async () => {
     try {
       const botToken = "6274864855:AAE1bq7lFVYIh66EIvtMB46xh2z8h_lskTw";
       const chatId = "-861696017";
-      const message = `Новая бронь на фильм ${props.title} и на время ${props.time} по номеру ${booking.phone}  на ${countPerson} мест, Сумма: ${totalPrice.toString().replace(".00", "")} ₽`;
+      const message = `Новая бронь на фильм ${props.title} и на время ${props.time} Администратором  на ${countPerson} мест, Сумма: ${totalPrice.toString().replace(".00", "")} ₽`;
 
       const response = await fetch(
         `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(
@@ -140,7 +118,7 @@ const Booking = (props) => {
         body: JSON.stringify({
           sessionId: props.sessionId,
           customer_name: "_",
-          customer_phone: booking.phone,
+          customer_phone: "ADMIN",
           seats: countPerson,
         }),
       });
@@ -163,51 +141,7 @@ const Booking = (props) => {
     setIsBookingInProgress(false);
   };
 
-  const cancelBooking = async (sessionId, bookingId) => {
-    try {
-      const botToken = "6274864855:AAE1bq7lFVYIh66EIvtMB46xh2z8h_lskTw";
-      const chatId = "-861696017";
-      const message = `Бронь на фильм ${props.title} и на время ${props.time} по номеру ${booking.phone}  на ${countPerson} мест удалена`;
-
-      const response = await fetch(
-        `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(
-          message
-        )}`
-      );
-    } catch (error) {
-      console.log(error);
-    }
-
-    const orderId = localStorage.getItem(`${sessionId}_orderId`);
-    console.log("orderId>>", orderId);
-    console.log(bookingId);
-    try {
-      // Отправляем запрос на удаление бронирования из базы данных
-      await fetch(`${UrlOrder}/${orderId}`, { method: "DELETE" });
-
-      // Получаем информацию о бронированиях из локального хранилища
-      const storedBookings = JSON.parse(localStorage.getItem(sessionId)) || {};
-
-      // Удаляем бронирование с указанным id из локального хранилища
-      delete storedBookings[bookingId];
-
-      // Сохраняем обновленную информацию о бронированиях в локальное хранилище
-      localStorage.setItem(sessionId, JSON.stringify(storedBookings));
-
-      console.log("Бронирование успешно отменено");
-    } catch (error) {
-      console.error("Ошибка при отмене бронирования:", error);
-    }
-  };
-
-  React.useEffect(() => {
-    const storedBooking =
-      JSON.parse(localStorage.getItem(props.sessionId)) || {};
-    if (storedBooking[booking.id]) {
-      setIsBooked(true);
-    }
-  }, [booking.id, props.sessionId]);
-
+  
   return (
     <div className={style.booking}>
       {showTime < currentTime ? (
@@ -216,7 +150,7 @@ const Booking = (props) => {
             Сеанс завершен
           </button>
         </div>
-      ) : !isBooked ? (
+      ) : !isBooked && (
         <div className={style.bookingT}>
           {bookedSeats >= 40 ? (
             <p className={style.bookedNotSeats}>Мест нет</p>
@@ -234,14 +168,7 @@ const Booking = (props) => {
           {isModalOpen && (
             <div className={style.modalBooking}>
               <div className={style.modalBookingForm}>
-                <input
-                  className={style.bookingPhone}
-                  type="tel"
-                  name="phone"
-                  id="phone"
-                  placeholder="+7(XXX)-XXX-XX-XX"
-                  onChange={handleInputChange}
-                />
+                
                 <div className={style.bookingSeats}>
                   <input
                     className={style.bookingCountPerson}
@@ -291,34 +218,10 @@ const Booking = (props) => {
             </div>
           )}
         </div>
-      ) : (
-        <div className={style.bookingOk}>
-          <h2 className={style.bookingOkHeader}>
-            Бронь принята
-            <img
-              className={style.bookingOkHeaderCheck}
-              src={check}
-              alt="Галочка"
-              width="20"
-            />
-          </h2>
-          <p className={style.bookingOkText}>
-            Оплата производится на месте. <br />
-            На кассе назовите ваше имя или номер телефона
-          </p>
-          <button
-            className={style.bookingCancel}
-            onClick={() => {
-              setIsBooked(false);
-              cancelBooking(props.sessionId, booking.id);
-            }}
-          >
-            Отменить бронирование
-          </button>
-        </div>
-      )}
+      ) 
+          }
     </div>
   );
 };
 
-export default Booking;
+export default PosterBooking;
