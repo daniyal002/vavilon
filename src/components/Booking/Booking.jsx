@@ -117,7 +117,7 @@ const Booking = (props) => {
     try {
       const botToken = "6274864855:AAE1bq7lFVYIh66EIvtMB46xh2z8h_lskTw";
       const chatId = "-861696017";
-      const message = `Новая бронь по номеру ${booking.phone}  на ${countPerson} мест`;
+      const message = `Новая бронь на фильм ${props.title} и на время ${props.time} по номеру ${booking.phone}  на ${countPerson} мест`;
 
       const response = await fetch(
         `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(
@@ -167,7 +167,7 @@ const Booking = (props) => {
     try {
       const botToken = "6274864855:AAE1bq7lFVYIh66EIvtMB46xh2z8h_lskTw";
       const chatId = "-861696017";
-      const message = `Бронь по номеру ${booking.phone}  на ${countPerson} мест удалена`;
+      const message = `Бронь на фильм ${props.title} и на время ${props.time} по номеру ${booking.phone}  на ${countPerson} мест удалена`;
 
       const response = await fetch(
         `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(

@@ -59,6 +59,7 @@ const Movie = ({ movieId, price, time, sessionId }) => {
       </div>
       <Booking
         sessionId={sessionId}
+        title={movieList.title}
         time={time}
         movieId={movieId}
         price={price}
