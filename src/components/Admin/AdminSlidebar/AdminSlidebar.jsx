@@ -18,6 +18,14 @@ const AdminSlidebar = () => {
         className={`${style.adminSlidebar} ${showMenu ? style.showMenu : ""}`}
       >
         <ul className={style.adminSlidebarList}>
+        <li className={style.adminSlidebarListItem}>
+            <Link
+              to="/"
+              className={style.adminSlidebarListItemLink}
+            >
+              Главная страница
+            </Link>
+          </li>
           <li className={style.adminSlidebarListItem}>
             <Link
               to="/admin/customer"
