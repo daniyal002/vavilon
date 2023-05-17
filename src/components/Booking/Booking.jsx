@@ -71,13 +71,15 @@ const Booking = (props) => {
   React.useEffect(() => {
     setTotalPrice(countPerson * props.price);
   }, [countPerson]);
-  const handleIncrement = () => {
+  const handleIncrement = (event) => {
+    event.preventDefault();
     if (countPerson < 40 - bookedSeats) {
       setCountPerson(countPerson + 1);
     }
   };
 
-  const handleDecrement = () => {
+  const handleDecrement = (event) => {
+    event.preventDefault();
     if (countPerson > 1) {
       setCountPerson(countPerson - 1);
     }
@@ -114,6 +116,7 @@ const Booking = (props) => {
   };
 
   const handleBookMovie = async () => {
+
     try {
       const botToken = "6274864855:AAE1bq7lFVYIh66EIvtMB46xh2z8h_lskTw";
       const chatId = "-861696017";
@@ -233,6 +236,7 @@ const Booking = (props) => {
 
           {isModalOpen && (
             <div className={style.modalBooking}>
+      
               <div className={style.modalBookingForm}>
                 <input
                   className={style.bookingPhone}
@@ -241,6 +245,9 @@ const Booking = (props) => {
                   id="phone"
                   placeholder="+7(XXX)-XXX-XX-XX"
                   onChange={handleInputChange}
+                  required
+                  maxLength={12}
+
                 />
                 <div className={style.bookingSeats}>
                   <input
@@ -253,6 +260,8 @@ const Booking = (props) => {
                     onChange={handleInputCountPersonChange}
                     min={1}
                     max={40 - bookedSeats}
+                    required
+
                   />
 
                   <button
@@ -276,8 +285,8 @@ const Booking = (props) => {
                 <button
                   className={style.bookingBtn}
                   disabled={isBookingInProgress}
-                  onClick={handleBookMovie}
-                >
+              onClick={handleBookMovie}
+>
                   {isBookingInProgress ? "Бронирование..." : "Забронировать"}
                 </button>
 

@@ -91,11 +91,19 @@ const PosterBooking = (props) => {
     }));
   };
 
+  const handleInputChange = (event) => {
+    const { id, value } = event.target;
+    setBooking((booking) => ({
+      ...booking,
+      [id]: value,
+    }));
+  };
+
   const handleBookMovie = async () => {
     try {
       const botToken = "6274864855:AAE1bq7lFVYIh66EIvtMB46xh2z8h_lskTw";
       const chatId = "-861696017";
-      const message = `Новая бронь на фильм ${props.title} и на время ${props.time} Администратором  на ${countPerson} мест, Сумма: ${totalPrice.toString().replace(".00", "")} ₽`;
+      const message = `Новая бронь на фильм ${props.title} и на время ${props.time} Администратором по номеру ${booking.phone} на ${countPerson} мест, Сумма: ${totalPrice.toString().replace(".00", "")} ₽`;
 
       const response = await fetch(
         `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(
@@ -118,7 +126,7 @@ const PosterBooking = (props) => {
         body: JSON.stringify({
           sessionId: props.sessionId,
           customer_name: "_",
-          customer_phone: "ADMIN",
+          customer_phone: booking.phone,
           seats: countPerson,
         }),
       });
@@ -167,13 +175,22 @@ const PosterBooking = (props) => {
 
           {isModalOpen && (
             <div className={style.modalBooking}>
-              <div className={style.modalBookingForm}>
+                <div className={style.modalBookingForm}>
+
+              <input
+                  className={style.bookingPhone}
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  placeholder="+7(XXX)-XXX-XX-XX"
+                  onChange={handleInputChange}/>
                 
                 <div className={style.bookingSeats}>
                   <input
                     className={style.bookingCountPerson}
                     type="number"
                     name="countPerson"
+                    required
                     id="countPerson"
                     placeholder="Количество человек"
                     value={countPerson}
@@ -214,7 +231,8 @@ const PosterBooking = (props) => {
                 >
                   Закрыть
                 </button>
-              </div>
+                </div>
+
             </div>
           )}
         </div>
